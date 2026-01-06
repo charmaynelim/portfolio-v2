@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "heading": "charmayne is a founding designer, growth marketer, and builder",
+    "bio": "with 0 to 1 experience in product & GTM. Employee #4 at HeyMax who helped scale to 6M+ ARR in SEA. Building at the edges. Based in Singapore (now SF) but hardly stays put.",
+    "heyMaxUrl": "https://heymax.ai"
+  },
+  "projects": [
+    {
+      "title": "a chinese app for heritage learners",
+      "href": "/a-chinese-app-for-heritage-learners"
+    },
+    {
+      "title": "some conversations don't wait",
+      "href": "/some-conversations-dont-wait"
+    },
+    {
+      "title": "log / writing",
+      "href": "/log"
+    }
+  ],
+  "socialLinks": [
+    {
+      "label": "email",
+      "url": "mailto:charmayne.lrs@gmail.com"
+    },
+    {
+      "label": "linkedin",
+      "url": "https://www.linkedin.com/in/charmayne-lim/"
+    },
+    {
+      "label": "instagram",
+      "url": "http://instagram.com/longformcharm"
+    },
+    {
+      "label": "X",
+      "url": "https://x.com/shortformcharm"
+    }
+  ]
+}

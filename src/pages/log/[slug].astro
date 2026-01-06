@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import PostMetadata from '../../components/blog/PostMetadata.astro';
+import PostTitle from '../../components/blog/PostTitle.astro';
+import PostBody from '../../components/blog/PostBody.astro';
+
+// Generate static paths for all blog posts
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog');
+  return blogPosts
+    .filter(post => !post.data.draft)
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Format date as "DD Month YYYY"
+const formattedDate = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(post.data.date);
+---
+
+<BlogLayout title={`${post.data.title} - charmayne`} description={post.data.title} backHref="/log">
+  <PostMetadata text={formattedDate} />
+  <PostTitle title={post.data.title} />
+  <PostBody>
+    <Content />
+  </PostBody>
+</BlogLayout>

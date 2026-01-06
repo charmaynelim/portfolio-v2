@@ -1,0 +1,39 @@
+---
+// BlogPostListItem displays a single blog post row with date and title
+interface Props {
+  slug: string;
+  title: string;
+  date: Date;
+}
+
+const { slug, title, date } = Astro.props;
+
+// Format date as "DD Month YYYY"
+const formattedDate = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+}).format(date);
+---
+
+<a href={`/log/${slug}`} class="blog-post-list-item">
+  <span class="post-date text-metadata">{formattedDate}</span>
+  <h2 class="post-title text-post-title">{title}</h2>
+</a>
+
+<style>
+  .blog-post-list-item {
+    display: block;
+    padding: 40px 0;
+    text-decoration: none;
+  }
+
+  .post-date {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .post-title {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,19 @@
+---
+import { getEntry } from 'astro:content';
+import ProjectLayout from '../layouts/ProjectLayout.astro';
+import PostMetadata from '../components/blog/PostMetadata.astro';
+import PostTitle from '../components/blog/PostTitle.astro';
+import PostBody from '../components/blog/PostBody.astro';
+
+// Query project content
+const project = await getEntry('projects', 'chinese-app');
+const { Content } = await project.render();
+---
+
+<ProjectLayout title={`${project.data.title} - charmayne`} description={project.data.title}>
+  <PostMetadata text={project.data.metadata} />
+  <PostTitle title={project.data.title} />
+  <PostBody>
+    <Content />
+  </PostBody>
+</ProjectLayout>

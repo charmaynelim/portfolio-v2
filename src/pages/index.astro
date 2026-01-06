@@ -1,0 +1,19 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import HeroSection from '../components/homepage/HeroSection.astro';
+import ProjectList from '../components/homepage/ProjectList.astro';
+import Footer from '../components/homepage/Footer.astro';
+import homepageData from '../data/homepage.json';
+
+const { hero, projects, socialLinks } = homepageData;
+---
+
+<HomeLayout>
+	<HeroSection
+		heading={hero.heading}
+		bio={hero.bio}
+		heyMaxUrl={hero.heyMaxUrl}
+	/>
+	<ProjectList projects={projects} />
+	<Footer links={socialLinks} />
+</HomeLayout>

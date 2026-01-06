@@ -1,0 +1,117 @@
+/* Design Tokens */
+
+:root {
+  /* Color Palette */
+  /* Backgrounds */
+  --color-bg-primary: #F2F2F2;
+
+  /* Text */
+  --color-text-primary: #333333;    /* Headings, links, main UI */
+  --color-text-secondary: #666666;  /* Bio paragraph */
+  --color-text-tertiary: #8D8D8D;   /* Dates, metadata */
+  --color-text-body: #4D4D4D;       /* Blog/project content */
+
+  /* UI Elements */
+  --color-divider: #CCCCCC;
+
+  /* Font Families */
+  --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Courier New', monospace;
+  --font-serif: 'Spectral', Georgia, serif;
+
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+
+  /* Typography - Hero */
+  --font-hero: var(--font-sans);
+  --font-size-hero: 18px;
+  --line-height-hero: 1.25;
+  --font-weight-hero: var(--font-weight-medium);
+
+  /* Typography - Bio */
+  --font-bio: var(--font-mono);
+  --font-size-bio: 14px;
+  --line-height-bio: 1.25;
+  --font-weight-bio: var(--font-weight-medium);
+
+  /* Typography - Project Link */
+  --font-project-link: var(--font-sans);
+  --font-size-project-link: 26px;
+  --line-height-project-link: 1.25;
+  --font-weight-project-link: var(--font-weight-medium);
+
+  /* Typography - Post Title */
+  --font-post-title: var(--font-sans);
+  --font-size-post-title: 24px;
+  --line-height-post-title: 1.25;
+  --font-weight-post-title: var(--font-weight-medium);
+
+  /* Typography - Links */
+  --font-link: var(--font-mono);
+  --font-size-link: 14px;
+  --line-height-link: 1.25;
+  --font-weight-link: var(--font-weight-medium);
+
+  /* Typography - Site Name */
+  --font-site-name: var(--font-sans);
+  --font-size-site-name: 12px;
+  --line-height-site-name: 1.25;
+  --font-weight-site-name: var(--font-weight-medium);
+
+  /* Typography - Metadata */
+  --font-metadata: var(--font-mono);
+  --font-size-metadata: 10px;
+  --line-height-metadata: 1.25;
+  --font-weight-metadata: var(--font-weight-medium);
+
+  /* Typography - Body */
+  --font-body: var(--font-serif);
+  --font-size-body: 16px;
+  --line-height-body: 1.5;
+  --font-weight-body: var(--font-weight-regular);
+
+  /* Spacing System */
+  /* Container Padding */
+  --padding-container-horizontal: 44px;
+  --padding-container-vertical: 44px;
+  --padding-container-mobile-horizontal: 20px;
+  --padding-container-mobile-top: 40px;
+  --padding-container-mobile-bottom: 20px;
+
+  /* Vertical Rhythm */
+  --spacing-section: 120px;
+  --spacing-section-mobile: 80px;
+
+  /* Content Spacing */
+  --spacing-paragraph: 12px;
+  --spacing-image: 24px;
+
+  /* Footer */
+  --spacing-footer-links-mobile: 20px;
+  --padding-footer-bottom: 20px;
+
+  /* Layout */
+  /* Container */
+  --max-content-width: 500px;
+
+  /* Icons */
+  --icon-back-arrow-size: 20px;
+
+  /* Dividers */
+  --divider-height: 1px;
+
+  /* Interactive States */
+  --opacity-hover: 0.8;
+  --opacity-press: 0.8;
+}
+
+/* Mobile Overrides */
+@media (max-width: 767px) {
+  :root {
+    --font-size-hero: 22px;
+    --font-size-bio: 16px;
+    --font-size-project-link: 32px;
+    --line-height-project-link: 1.15;
+    --font-size-link: 16px;
+  }
+}

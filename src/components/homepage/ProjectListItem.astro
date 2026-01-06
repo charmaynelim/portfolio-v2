@@ -1,0 +1,21 @@
+---
+// ProjectListItem displays a single clickable project row
+interface Props {
+  title: string;
+  href: string;
+}
+
+const { title, href } = Astro.props;
+---
+
+<a href={href} class="project-list-item text-project-link">
+  {title}
+</a>
+
+<style>
+  .project-list-item {
+    display: block;
+    padding: 24px 0;
+    text-decoration: none;
+  }
+</style>

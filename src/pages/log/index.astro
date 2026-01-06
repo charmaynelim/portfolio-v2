@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogPostList from '../../components/blog/BlogPostList.astro';
+
+// Query all blog posts
+const allPosts = await getCollection('blog');
+
+// Filter out drafts and sort by date (newest first)
+const posts = allPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map(post => ({
+    slug: post.slug,
+    title: post.data.title,
+    date: post.data.date,
+  }));
+---
+
+<BlogLayout title="log / writing - charmayne" backHref="/">
+  <BlogPostList posts={posts} />
+</BlogLayout>

@@ -1,0 +1,42 @@
+---
+// HeroSection displays hero heading and bio paragraph with HeyMax link
+interface Props {
+  heading: string;
+  bio: string;
+  heyMaxUrl: string;
+}
+
+const { heading, bio, heyMaxUrl } = Astro.props;
+---
+
+<section class="hero-section">
+  <h1 class="text-hero hero-heading">{heading}</h1>
+  <p class="text-bio hero-bio">
+    {bio} <a href={heyMaxUrl} target="_blank" rel="noopener noreferrer" class="heymax-link">heymax</a>
+  </p>
+</section>
+
+<style>
+  .hero-section {
+    max-width: 410px;
+    margin-bottom: var(--spacing-section);
+  }
+
+  .hero-heading {
+    margin-bottom: 12px;
+  }
+
+  .hero-bio {
+    margin: 0;
+  }
+
+  .heymax-link {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 767px) {
+    .hero-section {
+      margin-bottom: var(--spacing-section-mobile);
+    }
+  }
+</style>

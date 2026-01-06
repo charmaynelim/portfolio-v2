@@ -1,0 +1,16 @@
+---
+// PostTitle displays post or project title
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<h1 class="post-title text-post-title">{title}</h1>
+
+<style>
+  .post-title {
+    margin-bottom: 24px;
+  }
+</style>

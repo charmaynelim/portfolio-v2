@@ -1,0 +1,26 @@
+---
+// BackArrow displays left-pointing arrow icon that navigates to parent page
+interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a href={href} class="back-arrow interactive" aria-label="Go back">
+  <img src="/icons/west.svg" alt="" width="20" height="20" />
+</a>
+
+<style>
+  .back-arrow {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 40px;
+  }
+
+  .back-arrow img {
+    width: var(--icon-back-arrow-size);
+    height: var(--icon-back-arrow-size);
+    display: block;
+  }
+</style>

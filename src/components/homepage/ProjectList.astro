@@ -1,0 +1,36 @@
+---
+import ProjectListItem from './ProjectListItem.astro';
+import HorizontalDivider from '../global/HorizontalDivider.astro';
+
+// ProjectList renders list of project/blog links with dividers
+interface Props {
+  projects: {
+    title: string;
+    href: string;
+  }[];
+}
+
+const { projects } = Astro.props;
+---
+
+<nav class="project-list">
+  {projects.map((project, index) => (
+    <>
+      {index > 0 && <HorizontalDivider />}
+      <ProjectListItem title={project.title} href={project.href} />
+    </>
+  ))}
+  <HorizontalDivider />
+</nav>
+
+<style>
+  .project-list {
+    margin-bottom: var(--spacing-section);
+  }
+
+  @media (max-width: 767px) {
+    .project-list {
+      margin-bottom: var(--spacing-section-mobile);
+    }
+  }
+</style>

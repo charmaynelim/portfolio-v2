@@ -1,0 +1,21 @@
+---
+// ContentContainer wraps page content with max-width and responsive padding
+---
+
+<div class="content-container">
+  <slot />
+</div>
+
+<style>
+  .content-container {
+    padding: var(--padding-container-vertical) var(--padding-container-horizontal);
+  }
+
+  @media (max-width: 767px) {
+    .content-container {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: var(--padding-container-mobile-top) var(--padding-container-mobile-horizontal) var(--padding-container-mobile-bottom);
+    }
+  }
+</style>

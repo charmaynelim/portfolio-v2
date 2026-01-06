@@ -1,0 +1,56 @@
+---
+// PostBody renders markdown content with proper spacing
+---
+
+<article class="post-body text-body">
+  <slot />
+</article>
+
+<style>
+  .post-body {
+    /* Paragraph spacing */
+    :global(p) {
+      margin-bottom: var(--spacing-paragraph);
+    }
+
+    :global(p:last-child) {
+      margin-bottom: 0;
+    }
+
+    /* Heading spacing */
+    :global(h2) {
+      margin-top: 16px;
+      margin-bottom: 12px;
+      font-family: var(--font-sans);
+      font-size: 20px;
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    :global(h3, h4, h5, h6) {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      font-family: var(--font-sans);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-primary);
+    }
+
+    :global(h2:first-child, h3:first-child) {
+      margin-top: 0;
+    }
+
+    /* Image spacing */
+    :global(img) {
+      margin-top: var(--spacing-image);
+      margin-bottom: var(--spacing-image);
+      width: 100%;
+      height: auto;
+    }
+
+    /* Links in body content */
+    :global(a) {
+      text-decoration: underline;
+      color: var(--color-text-primary);
+    }
+  }
+</style>

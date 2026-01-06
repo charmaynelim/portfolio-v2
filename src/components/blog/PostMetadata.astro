@@ -1,0 +1,16 @@
+---
+// PostMetadata displays date or project metadata
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<p class="post-metadata text-metadata">{text}</p>
+
+<style>
+  .post-metadata {
+    margin-bottom: 24px;
+  }
+</style>

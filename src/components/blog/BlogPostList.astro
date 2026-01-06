@@ -1,0 +1,29 @@
+---
+import BlogPostListItem from './BlogPostListItem.astro';
+import HorizontalDivider from '../global/HorizontalDivider.astro';
+
+// BlogPostList renders list of blog posts with dates and titles
+interface Props {
+  posts: {
+    slug: string;
+    title: string;
+    date: Date;
+  }[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="blog-post-list">
+  {posts.map((post, index) => (
+    <>
+      {index > 0 && <HorizontalDivider />}
+      <BlogPostListItem
+        slug={post.slug}
+        title={post.title}
+        date={post.date}
+      />
+    </>
+  ))}
+  <HorizontalDivider />
+</div>

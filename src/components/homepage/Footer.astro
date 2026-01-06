@@ -1,0 +1,71 @@
+---
+// Footer displays social links with responsive layout
+interface Props {
+  links: {
+    label: string;
+    url: string;
+  }[];
+}
+
+const { links } = Astro.props;
+---
+
+<footer class="footer">
+  <nav class="footer-links">
+    {links.map((link) => (
+      <a href={link.url} target="_blank" rel="noopener noreferrer" class="footer-link text-link">
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</footer>
+
+<style>
+  .footer {
+    padding-bottom: var(--padding-footer-bottom);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    background-color: #F2F2F2;
+  }
+
+  .footer-link {
+    text-decoration: none;
+  }
+
+  /* Desktop hover */
+  @media (hover: hover) {
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* Mobile press */
+  @media (hover: none) {
+    .footer-link:active {
+      text-decoration: underline;
+    }
+  }
+
+  /* Desktop: horizontal layout, sticky at bottom */
+  @media (min-width: 768px) {
+    .footer {
+      position: sticky;
+      bottom: 0;
+    }
+
+    .footer-links {
+      flex-direction: row;
+    }
+  }
+
+  /* Mobile: vertical layout */
+  @media (max-width: 767px) {
+    .footer-links {
+      flex-direction: column;
+      gap: var(--spacing-footer-links-mobile);
+    }
+  }
+</style>

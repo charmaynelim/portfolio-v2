@@ -1,0 +1,136 @@
+/* Global Styles & Typography */
+
+/* Font Face Declarations */
+/* TODO: Add @font-face rules when fonts are added to /public/fonts */
+/* Example:
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-medium.woff2') format('woff2'),
+       url('/fonts/inter/inter-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Base Styles */
+html {
+  background-color: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  color: var(--color-text-body);
+}
+
+/* Links */
+a {
+  text-decoration: underline;
+  color: var(--color-text-primary);
+  transition: opacity 0.2s ease;
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+  a:hover,
+  .interactive:hover {
+    opacity: var(--opacity-hover);
+  }
+}
+
+/* Mobile press */
+@media (hover: none) {
+  a:active,
+  .interactive:active {
+    opacity: var(--opacity-press);
+  }
+}
+
+/* Focus visible styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+  opacity: var(--opacity-hover);
+}
+
+/* Utility Classes */
+.text-hero {
+  font-family: var(--font-hero);
+  font-size: var(--font-size-hero);
+  line-height: var(--line-height-hero);
+  font-weight: var(--font-weight-hero);
+  color: var(--color-text-primary);
+}
+
+.text-bio {
+  font-family: var(--font-bio);
+  font-size: var(--font-size-bio);
+  line-height: var(--line-height-bio);
+  font-weight: var(--font-weight-bio);
+  color: var(--color-text-secondary);
+}
+
+.text-project-link {
+  font-family: var(--font-project-link);
+  font-size: var(--font-size-project-link);
+  line-height: var(--line-height-project-link);
+  font-weight: var(--font-weight-project-link);
+  color: var(--color-text-primary);
+}
+
+.text-post-title {
+  font-family: var(--font-post-title);
+  font-size: var(--font-size-post-title);
+  line-height: var(--line-height-post-title);
+  font-weight: var(--font-weight-post-title);
+  color: var(--color-text-primary);
+}
+
+.text-link {
+  font-family: var(--font-link);
+  font-size: var(--font-size-link);
+  line-height: var(--line-height-link);
+  font-weight: var(--font-weight-link);
+  color: var(--color-text-primary);
+}
+
+.text-site-name {
+  font-family: var(--font-site-name);
+  font-size: var(--font-size-site-name);
+  line-height: var(--line-height-site-name);
+  font-weight: var(--font-weight-site-name);
+  color: var(--color-text-primary);
+}
+
+.text-metadata {
+  font-family: var(--font-metadata);
+  font-size: var(--font-size-metadata);
+  line-height: var(--line-height-metadata);
+  font-weight: var(--font-weight-metadata);
+  color: var(--color-text-tertiary);
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  color: var(--color-text-body);
+}
