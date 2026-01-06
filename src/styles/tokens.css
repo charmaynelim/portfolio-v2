@@ -36,7 +36,7 @@
 
   /* Typography - Project Link */
   --font-project-link: var(--font-sans);
-  --font-size-project-link: 26px;
+  --font-size-project-link: 32px;
   --line-height-project-link: 1.25;
   --font-weight-project-link: var(--font-weight-medium);
 
@@ -60,7 +60,7 @@
 
   /* Typography - Metadata */
   --font-metadata: var(--font-mono);
-  --font-size-metadata: 10px;
+  --font-size-metadata: 12px;
   --line-height-metadata: 1.25;
   --font-weight-metadata: var(--font-weight-medium);
 

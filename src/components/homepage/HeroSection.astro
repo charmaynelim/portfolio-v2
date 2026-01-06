@@ -7,12 +7,17 @@ interface Props {
 }
 
 const { heading, bio, heyMaxUrl } = Astro.props;
+
+// Split bio text to embed link in "HeyMax"
+const parts = bio.split('HeyMax');
+const beforeHeyMax = parts[0] || '';
+const afterHeyMax = parts[1] || '';
 ---
 
 <section class="hero-section">
   <h1 class="text-hero hero-heading">{heading}</h1>
   <p class="text-bio hero-bio">
-    {bio} <a href={heyMaxUrl} target="_blank" rel="noopener noreferrer" class="heymax-link">heymax</a>
+    {beforeHeyMax}<a href={heyMaxUrl} target="_blank" rel="noopener noreferrer" class="heymax-link">HeyMax</a>{afterHeyMax}
   </p>
 </section>
 

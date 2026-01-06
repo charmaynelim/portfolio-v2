@@ -134,3 +134,10 @@ button:focus-visible {
   font-weight: var(--font-weight-body);
   color: var(--color-text-body);
 }
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .text-project-link {
+    padding-right: 32px;
+  }
+}
