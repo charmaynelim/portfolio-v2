@@ -49,16 +49,22 @@ const { links } = Astro.props;
     }
   }
 
-  /* Desktop: horizontal layout, sticky at bottom */
+  /* Desktop: horizontal layout, fixed at bottom */
   @media (min-width: 768px) {
     .footer {
-      position: sticky;
-      bottom: 0;
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      padding-left: var(--padding-container-horizontal);
+      padding-right: var(--padding-container-horizontal);
+      pointer-events: none;
     }
 
     .footer-links {
       flex-direction: row;
       justify-content: space-between;
+      pointer-events: auto;
     }
   }
 

@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
   font-size: 20px;
   margin-top: 16px;
+  margin-bottom: 12px;
 }
 
 p {
@@ -47,6 +48,7 @@ p {
   line-height: var(--line-height-body);
   font-weight: var(--font-weight-body);
   color: var(--color-text-body);
+  margin-bottom: 8px;
 }
 
 /* Links */

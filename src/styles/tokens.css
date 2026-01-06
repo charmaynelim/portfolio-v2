@@ -1,3 +1,28 @@
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter/inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/geist-mono/geist-mono-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: url('/fonts/spectral/spectral-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Design Tokens */
 
 :root {
@@ -54,7 +79,7 @@
 
   /* Typography - Site Name */
   --font-site-name: var(--font-sans);
-  --font-size-site-name: 12px;
+  --font-size-site-name: 14px;
   --line-height-site-name: 1.25;
   --font-weight-site-name: var(--font-weight-medium);
 
