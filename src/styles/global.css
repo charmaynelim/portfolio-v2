@@ -14,6 +14,10 @@
 */
 
 /* Base Styles */
+html, body {
+  overscroll-behavior: none !important;
+}
+
 html {
   background-color: var(--color-bg-primary);
 }
