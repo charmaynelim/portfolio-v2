@@ -1,19 +1,55 @@
 # Dependencies
 node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Build output
 .astro/
 dist/
+.output/
+.vercel/
+.netlify/
+.cloudflare/
+
+# Generated files
+.astro/
 
 # Environment variables
 .env
 .env.*
 !.env.example
+!.env.template
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # MacOS
 .DS_Store
+*.swp
+*.swo
+*~
 
 # Editor files
 *.save
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
+.fleet/
+
+# Testing
+coverage/
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
