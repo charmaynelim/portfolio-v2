@@ -1,21 +1,44 @@
 ---
-// ProjectListItem displays a single clickable project row
+// ProjectListItem displays a single clickable project row with optional icon
 interface Props {
   title: string;
   href: string;
+  icon?: string;
 }
 
-const { title, href } = Astro.props;
+const { title, href, icon } = Astro.props;
 ---
 
 <a href={href} class="project-list-item text-project-link">
-  {title}
+  {icon && icon.trim() && <img src={icon} alt="" class="project-icon" />}
+  <span class="project-title">{title}</span>
 </a>
 
 <style>
   .project-list-item {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 16px;
     padding: 24px 0;
     text-decoration: none;
+  }
+
+  .project-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+  }
+
+  .project-title {
+    flex: 1;
+  }
+
+  /* Mobile: stack icon above text */
+  @media (max-width: 767px) {
+    .project-list-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
   }
 </style>

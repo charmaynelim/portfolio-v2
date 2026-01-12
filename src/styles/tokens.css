@@ -34,7 +34,7 @@
   --color-text-primary: #333333;    /* Headings, links, main UI */
   --color-text-secondary: #666666;  /* Bio paragraph */
   --color-text-tertiary: #8D8D8D;   /* Dates, metadata */
-  --color-text-body: #4D4D4D;       /* Blog/project content */
+  --color-text-body: #202020;       /* Blog/project content */
 
   /* UI Elements */
   --color-divider: #CCCCCC;
@@ -67,7 +67,7 @@
 
   /* Typography - Post Title */
   --font-post-title: var(--font-sans);
-  --font-size-post-title: 24px;
+  --font-size-post-title: 28px;
   --line-height-post-title: 1.25;
   --font-weight-post-title: var(--font-weight-medium);
 
@@ -91,7 +91,7 @@
 
   /* Typography - Body */
   --font-body: var(--font-serif);
-  --font-size-body: 16px;
+  --font-size-body: 18px;
   --line-height-body: 1.5;
   --font-weight-body: var(--font-weight-regular);
 
@@ -138,5 +138,6 @@
     --font-size-project-link: 32px;
     --line-height-project-link: 1.15;
     --font-size-link: 16px;
+    --font-size-body: 18px;
   }
 }

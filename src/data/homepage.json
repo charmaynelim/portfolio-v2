@@ -1,21 +1,24 @@
 {
   "hero": {
-    "heading": "charmayne is a founding designer, growth marketer, and builder",
-    "bio": "with 0 to 1 experience in product & GTM. Employee #4 at HeyMax who helped scale to 6M+ ARR in SEA. Building at the edges. Based in Singapore (now SF) but hardly stays put.",
+    "heading": "charmayne is a product designer, growth marketer, and builder",
+    "bio": "with 0 to 1 experience in product & GTM. Founding designer and employee #4 at HeyMax who helped scale to 6M+ ARR in SEA. Building at the edges. Based in Singapore (now SF) but hardly stays put.",
     "heyMaxUrl": "https://heymax.ai"
   },
   "projects": [
     {
-      "title": "chinese, for those who grew up around it",
-      "href": "/a-chinese-app-for-heritage-learners"
+      "title": "Building Sidi: a tool for serious Chinese learners",
+      "href": "/sidi",
+      "icon": "/icons/projects/sidi.png"
     },
     {
-      "title": "some conversations don't wait",
-      "href": "/some-conversations-dont-wait"
+      "title": "Designing x scaling at HeyMax",
+      "href": "/heymax",
+      "icon": "/icons/projects/heymax.png"
     },
     {
-      "title": "log / writing",
-      "href": "/log"
+      "title": "log / notes",
+      "href": "/log",
+      "icon": "/icons/projects/log.png"
     }
   ],
   "socialLinks": [

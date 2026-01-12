@@ -8,49 +8,76 @@
 
 <style>
   .post-body {
-    /* Paragraph spacing */
-    :global(p) {
-      margin-bottom: var(--spacing-paragraph);
-    }
+    max-width: 600px;
+  }
 
-    :global(p:last-child) {
-      margin-bottom: 12px;
-    }
+  /* Paragraph spacing */
+  .post-body :global(p) {
+    margin-bottom: var(--spacing-paragraph);
+  }
 
-    /* Heading spacing */
-    :global(h2) {
-      margin-top: 16px;
-      margin-bottom: 12px;
-      font-family: var(--font-sans);
-      font-size: 20px;
-      font-weight: var(--font-weight-medium);
-      color: var(--color-text-primary);
-    }
+  .post-body :global(p:last-child) {
+    margin-bottom: 12px;
+  }
 
-    :global(h3, h4, h5, h6) {
-      margin-top: 24px;
-      margin-bottom: 12px;
-      font-family: var(--font-sans);
-      font-weight: var(--font-weight-medium);
-      color: var(--color-text-primary);
-    }
+  /* Heading spacing */
+  .post-body :global(h2) {
+    margin-top: 16px;
+    margin-bottom: 12px;
+    font-family: var(--font-sans);
+    font-size: 20px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
 
-    :global(h2:first-child, h3:first-child) {
-      margin-top: 0;
-    }
+  .post-body :global(h3),
+  .post-body :global(h4),
+  .post-body :global(h5),
+  .post-body :global(h6) {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
 
-    /* Image spacing */
-    :global(img) {
-      margin-top: var(--spacing-image);
-      margin-bottom: var(--spacing-image);
-      width: 100%;
-      height: auto;
-    }
+  .post-body :global(h2:first-child),
+  .post-body :global(h3:first-child) {
+    margin-top: 0;
+  }
 
-    /* Links in body content */
-    :global(a) {
-      text-decoration: underline;
-      color: var(--color-text-primary);
-    }
+  /* Image spacing */
+  .post-body :global(img) {
+    margin-top: var(--spacing-image);
+    margin-bottom: var(--spacing-image);
+    width: 100%;
+    height: auto;
+  }
+
+  /* Links in body content */
+  .post-body :global(a) {
+    text-decoration: underline;
+    color: var(--color-text-primary);
+  }
+
+  /* Bullet point lists */
+  .post-body :global(ul) {
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: var(--spacing-paragraph);
+  }
+
+  .post-body :global(ol) {
+    list-style-type: decimal;
+    padding-left: 1.5em;
+    margin-bottom: var(--spacing-paragraph);
+  }
+
+  .post-body :global(li) {
+    margin-bottom: 0.5em;
+  }
+
+  .post-body :global(li:last-child) {
+    margin-bottom: 0;
   }
 </style>

@@ -7,6 +7,7 @@ interface Props {
   projects: {
     title: string;
     href: string;
+    icon?: string;
   }[];
 }
 
@@ -17,7 +18,7 @@ const { projects } = Astro.props;
   {projects.map((project, index) => (
     <>
       {index > 0 && <HorizontalDivider />}
-      <ProjectListItem title={project.title} href={project.href} />
+      <ProjectListItem title={project.title} href={project.href} icon={project.icon} />
     </>
   ))}
   <HorizontalDivider />

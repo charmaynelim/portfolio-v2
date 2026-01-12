@@ -14,6 +14,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     metadata: z.string(),
+    icon: z.string().optional(),
     draft: z.boolean().optional().default(false),
   }),
 });
