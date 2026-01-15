@@ -8,7 +8,7 @@ I started improving my Chinese this year. That meant confronting a problem I've 
 
 Libraries were my refuge as a child: I read all the time and built my inner world with words. But only in English. My basic Chinese couldn't yet take me to the depth I was looking for, so I followed the language that could. Seven-year-old me left my mother tongue in the dust.
 
-Growing up in Singapore meant Chinese was always around me anyway. I understood everything people said, but practiced speaking less and less.
+Growing up in Singapore meant Chinese was always around me anyway. I understood everything people said, but practiced writing and speaking less and less.
 
 As I grew older, the words would catch in my throat. I felt mute in the language I was supposed to call my own. My reading stayed stuck at an intermediate plateau.
 
