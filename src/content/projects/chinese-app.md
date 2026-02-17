@@ -25,14 +25,6 @@ here's how i'm phasing out the MVP development (with claude code):
 current progress: 
 ✅ phase 0 and 1 complete
 
-i've been structuring building sessions this way:
-1. session-based execution: i work through tasks in focused sessions with claude code. each session runs until claude's memory limit is reached, then i start fresh to prevent compacted / degraded responses.
-2. test after each phase: once a phase is functionally complete, i run through the test cases (i have a testing plan in an .md file but tbh there hasn't been the need for that - i've just been testing it manually for now)
-3. bug identification and fixing: i document issues i find, then either fix them immediately with a targeted prompt or file them for a follow up sessions.
-
-for example: after phase 1, i identified two search quality issues:
-- english search was too loose — "to live" matched "living room" and "live up to." Fixed by improving search ranking so exact phrase matches rank higher.
-- toneless pinyin search missing — Users couldn't search "sheng huo" (without tones). Implemented a pinyin_toneless column approach to support this common use case.
 
 ## <b>12 Jan 2026</b>
 MVP has two flows:
