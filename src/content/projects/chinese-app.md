@@ -11,10 +11,27 @@ Sidi is a Chinese reading tool for serious Chinese learners looking to build rea
 
 ![Cover](./images/sidi-cover.png)
 
-credits: claude code for making this possible 
 <br><br>
 
-## <b>Current state (12 Jan 2026)</b>
+## <b>16 Feb 2026</b>
+back after a bit of a break, during which i procrastinated by building two small tools: a markdown file reader and a reading tracker. making mini tools just for yourself is the most useless and delightful thing.
+
+here's how i'm phasing out the MVP development (with claude code):
+- Phase 0: data import and infrastructure
+- Phase 1: core lookup (search and detail pages - no auth)
+- Phase 2: generation (LLM pipeline)
+- Phase 3: auth and save to deck
+- Phase 4: further design, testing, deploy
+
+current progress: 
+✅ phase 0 and 1 complete
+
+i've been structuring building sessions this way:
+1. session-based execution: i work through tasks in focused sessions with claude code. each session runs until claude's memory limit is reached, then i start fresh to prevent compacted / degraded responses.
+2. test after each phase: once a phase is functionally complete, i run through the test cases (i have a testing plan in an .md file but tbh there hasn't been the need for that - i've just been testing it manually for now)
+3. bug identification and fixing: i document issues i find, then either fix them immediately with a targeted prompt or file them for a follow up session
+
+## <b>12 Jan 2026</b>
 MVP has two flows:
 - Lookup: Search → result → detail page
 - Save to deck: Requires login, lets you build a personal deck
@@ -27,7 +44,7 @@ There are 5 "levels" of entities that need different treatment.
 4. Primitive (e.g., 氵): Modifies meaning, rarely stands alone
 5. "Derived" primitive: Variant form of another component
 
-Each level needs a different design treatment. L1 shows word-level breakdown, L2 shows character components, and L3–L5 show etymology and usage. My key design challenge would be - how do we make the breakdown feel intuitive at each level without overloading the interface?
+Each level needs a different design treatment. L1 shows word-level breakdown, L2 shows character components, and L3–L5 show etymology and usage.
 
 #### <b>What I'm working on next:</b>
 - Finalize detail page design for each entity level
