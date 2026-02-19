@@ -13,7 +13,7 @@ Sidi is a Chinese reading tool for serious Chinese learners looking to build rea
 
 
 ## <b>16 Feb 2026</b>
-back after a bit of a break, during which i procrastinated by building two small tools: a markdown file reader and a reading tracker. making mini tools just for yourself is the most useless and delightful thing.
+back after a bit of a break, during which i procrastinated by building two small tools: a [library for all of my markdown artifacts](https://clarity-markdown-reader.vercel.app/) and a reading tracker. making mini tools just for yourself is the most useless and delightful thing.
 
 here's how i'm phasing out the MVP development (with claude code):
 - Phase 0: data import and infrastructure
@@ -23,7 +23,7 @@ here's how i'm phasing out the MVP development (with claude code):
 - Phase 4: further design, testing, deploy
 
 current progress: 
-✅ phase 0 and 1 complete
+✅ phase 0 - 3 complete
 
 
 ## <b>12 Jan 2026</b>
