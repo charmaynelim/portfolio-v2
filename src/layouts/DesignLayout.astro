@@ -1,0 +1,21 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/global/SiteHeader.astro';
+import BackArrow from '../components/global/BackArrow.astro';
+import '../styles/design.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="design-header">
+    <SiteHeader />
+    <BackArrow href="/" />
+  </div>
+  <slot />
+</BaseLayout>
