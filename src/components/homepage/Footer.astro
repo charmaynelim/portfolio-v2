@@ -28,7 +28,6 @@ const { links } = Astro.props;
   .footer-links {
     display: flex;
     gap: 24px;
-    background-color: #F2F2F2;
   }
 
   .footer-link {
@@ -53,11 +52,24 @@ const { links } = Astro.props;
   @media (min-width: 768px) {
     .footer {
       position: fixed;
-      bottom: 20px;
+      bottom: 0;
       left: 0;
       right: 0;
       padding-left: var(--padding-container-horizontal);
       padding-right: var(--padding-container-horizontal);
+      padding-bottom: var(--padding-footer-bottom);
+      background-color: #F2F2F2;
+      pointer-events: none;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, #F2F2F2);
       pointer-events: none;
     }
 

@@ -14,14 +14,13 @@ const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' 
 
 <a href={href} class:list={["project-list-item", "text-project-link", { external }]} {...externalAttrs}>
   {icon && icon.trim() && <img src={icon} alt="" class="project-icon" />}
-  <span class="project-title">{title}{subtitle && <span class="project-subtitle">{subtitle}</span>}</span>
-  {external && <img src="/icons/external-arrow.svg" alt="" class="external-icon" />}
+  <span class="project-title">{title}{subtitle && <span class="project-subtitle">{subtitle}</span>}{external && <img src="/icons/external-arrow.svg" alt="" class="external-icon" />}</span>
 </a>
 
 <style>
   .project-list-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     padding: 24px 0;
     text-decoration: none;
@@ -31,10 +30,13 @@ const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' 
     width: 32px;
     height: 32px;
     flex-shrink: 0;
+    margin-top: 2px;
   }
 
   .project-title {
     flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
   }
 
   .project-subtitle {
@@ -42,24 +44,18 @@ const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' 
     color: var(--color-text-tertiary);
   }
 
-  .external .project-title {
-    flex: none;
-  }
-
   .external-icon {
     width: 20px;
     height: 20px;
-    flex-shrink: 0;
-    display: block;
+    display: inline;
+    vertical-align: middle;
     position: relative;
-    top: 2px;
+    top: -1px;
+    margin-left: 8px;
   }
 
-  /* Mobile: stack icon above text (internal rows only) */
   @media (max-width: 767px) {
-    .project-list-item:not(.external) {
-      flex-direction: column;
-      align-items: flex-start;
+    .project-list-item {
       gap: 12px;
     }
   }
