@@ -4,14 +4,18 @@ interface Props {
   title: string;
   href: string;
   icon?: string;
+  external?: boolean;
+  subtitle?: string;
 }
 
-const { title, href, icon } = Astro.props;
+const { title, href, icon, external, subtitle } = Astro.props;
+const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
-<a href={href} class="project-list-item text-project-link">
+<a href={href} class:list={["project-list-item", "text-project-link", { external }]} {...externalAttrs}>
   {icon && icon.trim() && <img src={icon} alt="" class="project-icon" />}
-  <span class="project-title">{title}</span>
+  <span class="project-title">{title}{subtitle && <span class="project-subtitle">{subtitle}</span>}</span>
+  {external && <img src="/icons/external-arrow.svg" alt="" class="external-icon" />}
 </a>
 
 <style>
@@ -33,9 +37,27 @@ const { title, href, icon } = Astro.props;
     flex: 1;
   }
 
-  /* Mobile: stack icon above text */
+  .project-subtitle {
+    margin-left: 10px;
+    color: var(--color-text-tertiary);
+  }
+
+  .external .project-title {
+    flex: none;
+  }
+
+  .external-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+    top: 2px;
+  }
+
+  /* Mobile: stack icon above text (internal rows only) */
   @media (max-width: 767px) {
-    .project-list-item {
+    .project-list-item:not(.external) {
       flex-direction: column;
       align-items: flex-start;
       gap: 12px;

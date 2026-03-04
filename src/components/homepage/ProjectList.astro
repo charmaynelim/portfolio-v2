@@ -8,17 +8,21 @@ interface Props {
     title: string;
     href: string;
     icon?: string;
+    external?: boolean;
+    subtitle?: string;
+    hidden?: boolean; // Set to true in homepage.json to hide a row; remove to re-enable
   }[];
 }
 
 const { projects } = Astro.props;
+const visibleProjects = projects.filter((p) => !p.hidden);
 ---
 
 <nav class="project-list">
-  {projects.map((project, index) => (
+  {visibleProjects.map((project, index) => (
     <>
       {index > 0 && <HorizontalDivider />}
-      <ProjectListItem title={project.title} href={project.href} icon={project.icon} />
+      <ProjectListItem title={project.title} href={project.href} icon={project.icon} external={project.external} subtitle={project.subtitle} />
     </>
   ))}
   <HorizontalDivider />

@@ -6,17 +6,33 @@
   },
   "projects": [
     {
-      "title": "Building Sidi: a tool for serious Chinese learners",
+      "title": "Sidi",
+      "subtitle": "a tool for serious Chinese learners",
       "href": "/sidi",
       "icon": "/icons/projects/sidi.png"
     },
     {
-      "title": "Designing at HeyMax",
-      "href": "/design",
-      "icon": "/icons/projects/heymax.png"
+      "title": "Clarity",
+      "subtitle": "a nice place to read my AI markdown",
+      "href": "https://clarity-markdown-reader.vercel.app/",
+      "icon": "/icons/projects/clarity.png",
+      "external": true
     },
     {
-      "title": "log / notes",
+      "title": "HeyMax",
+      "subtitle": "founding designer",
+      "href": "https://www.figma.com/deck/NbTbXcKP1VoNmvmZJpVQbE/quick-portfolio---charmayne?node-id=1-439&t=EdC2masF0tGjbY24-1",
+      "icon": "/icons/projects/heymax.png",
+      "external": true
+    },
+    {
+      "title": "Designing at HeyMax",
+      "href": "/design",
+      "icon": "/icons/projects/heymax.png",
+      "hidden": true
+    },
+    {
+      "title": "Notes",
       "href": "/log",
       "icon": "/icons/projects/log.png"
     }
