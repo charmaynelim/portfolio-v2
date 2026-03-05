@@ -13,15 +13,15 @@
     },
     {
       "title": "Clarity",
-      "subtitle": "a nice place to read my AI markdown",
+      "subtitle": "a quiet place to read my AI markdown",
       "href": "https://clarity-markdown-reader.vercel.app/",
       "icon": "/icons/projects/clarity.png",
       "external": true
     },
     {
       "title": "HeyMax",
-      "subtitle": "founding designer",
-      "href": "https://www.figma.com/deck/NbTbXcKP1VoNmvmZJpVQbE/quick-portfolio---charmayne?node-id=1-439&t=EdC2masF0tGjbY24-1",
+      "subtitle": "founding designer & marketer",
+      "href": "https://www.figma.com/proto/85fcOdZz7SBr8cBJVb6tgR/2026?page-id=584%3A2489&node-id=596-180414&viewport=137%2C135%2C0.37&t=wDwo4pPoe6v99FNs-1&scaling=scale-down&content-scaling=fixed",
       "icon": "/icons/projects/heymax.png",
       "external": true
     },
