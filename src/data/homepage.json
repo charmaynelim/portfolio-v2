@@ -25,14 +25,15 @@
       "hidden": true
     },
     {
-      "title": "More work (& play)",
+      "title": "More",
+      "subtitle": "experiments, work, & play",
       "href": "/more",
-      "icon": "/icons/projects/clarity.png"
+      "icon": "/icons/projects/unsaid.png"
     },
     {
       "title": "Notes",
       "href": "/log",
-      "icon": "/icons/projects/log.png"
+      "icon": "/icons/projects/log-1.png"
     }
   ],
   "socialLinks": [
