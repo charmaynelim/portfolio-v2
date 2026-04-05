@@ -1,0 +1,176 @@
+---
+interface MoreItem {
+  id: string;
+  type: 'image' | 'video';
+  src: string;
+  poster?: string;
+  alt: string;
+  category: string | string[];
+  externalUrl?: string | null;
+  title?: string | null;
+  body?: string | null;
+  hoverHeader?: string | null;
+  hoverNote?: string | null;
+}
+
+interface Props {
+  item: MoreItem;
+}
+
+const { item } = Astro.props;
+const isExternal = !!item.externalUrl;
+const hasDetail = !isExternal && (item.title || item.body);
+const categoryValue = Array.isArray(item.category) ? item.category.join(',') : item.category;
+---
+
+<div
+  class="grid-item"
+  data-category={categoryValue}
+  data-id={item.id}
+  data-type={item.type}
+  data-src={item.src}
+  data-alt={item.alt}
+  data-title={item.title || ''}
+  data-body={item.body || ''}
+  data-poster={item.poster || ''}
+  data-external={item.externalUrl || ''}
+  data-hover-header={item.hoverHeader || ''}
+  data-hover-note={item.hoverNote || ''}
+>
+  {isExternal ? (
+    <a
+      href={item.externalUrl!}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="grid-item-link"
+      aria-label={`${item.alt} (opens in new tab)`}
+    >
+      <div class="grid-item-media">
+        {item.type === 'video' ? (
+          <video
+            src={item.src}
+            poster={item.poster}
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-label={item.alt}
+          />
+        ) : (
+          <img src={item.src} alt={item.alt} loading="lazy" />
+        )}
+        <span class="external-icon" aria-hidden="true">
+          <img src="/icons/arrow-outward.svg" alt="" width="16" height="16" />
+        </span>
+      </div>
+    </a>
+  ) : (
+    <button
+      type="button"
+      class="grid-item-button"
+      aria-label={hasDetail ? `View details: ${item.title || item.alt}` : item.alt}
+      data-open-modal
+    >
+      <div class="grid-item-media">
+        {item.type === 'video' ? (
+          <video
+            src={item.src}
+            poster={item.poster}
+            autoplay
+            muted
+            loop
+            playsinline
+            aria-label={item.alt}
+          />
+        ) : (
+          <img src={item.src} alt={item.alt} loading="lazy" />
+        )}
+      </div>
+    </button>
+  )}
+</div>
+
+<style>
+  .grid-item {
+    break-inside: avoid;
+    margin-bottom: var(--more-grid-gap);
+    border-radius: var(--more-tile-radius);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .grid-item-link,
+  .grid-item-button {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .grid-item-media {
+    position: relative;
+    line-height: 0;
+  }
+
+  .grid-item-media img,
+  .grid-item-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (hover: hover) {
+    .grid-item-link:hover .grid-item-media img,
+    .grid-item-link:hover .grid-item-media video,
+    .grid-item-button:hover .grid-item-media img,
+    .grid-item-button:hover .grid-item-media video {
+      opacity: 0.9;
+    }
+
+    .grid-item-link:hover .external-icon {
+      opacity: 1;
+    }
+  }
+
+  @media (hover: none) {
+    .grid-item-link:active .grid-item-media img,
+    .grid-item-link:active .grid-item-media video,
+    .grid-item-button:active .grid-item-media img,
+    .grid-item-button:active .grid-item-media video {
+      opacity: var(--opacity-press);
+    }
+  }
+
+  .grid-item-link:focus-visible,
+  .grid-item-button:focus-visible {
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
+    border-radius: var(--more-tile-radius);
+  }
+
+  /* External link icon */
+  .external-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .external-icon img {
+    width: 16px;
+    height: 16px;
+  }
+</style>

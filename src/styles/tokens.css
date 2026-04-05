@@ -128,6 +128,25 @@
   /* Interactive States */
   --opacity-hover: 0.8;
   --opacity-press: 0.8;
+
+  /* More Page — Grid */
+  --more-sidebar-width: 200px;
+  --more-grid-gap: 12px;
+  --more-grid-columns: 3;
+  --more-grid-columns-tablet: 3;
+  --more-grid-columns-mobile: 2;
+
+  /* More Page — Page Padding */
+  --more-padding-horizontal: 44px;
+  --more-padding-vertical: 44px;
+  --more-padding-mobile-horizontal: 20px;
+  --more-padding-mobile-top: 40px;
+
+  /* More Page — Tiles */
+  --more-tile-radius: 12px;
+
+  /* More Page — Filter */
+  --more-filter-gap: 12px;
 }
 
 /* Mobile Overrides */

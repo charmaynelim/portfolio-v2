@@ -1,0 +1,88 @@
+---
+interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+const allCategories = ['all', ...categories];
+---
+
+<!-- Desktop sidebar (hidden on mobile — no filtering UI on mobile) -->
+<aside class="filter-sidebar" aria-label="Filter by category">
+  <span class="filter-heading">work & play</span>
+  <div class="filter-list">
+    {allCategories.map((cat) => (
+      <button
+        type="button"
+        class:list={['filter-btn', { active: cat === 'all' }]}
+        data-filter={cat}
+        aria-pressed={cat === 'all' ? 'true' : 'false'}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+</aside>
+
+<style>
+  /* Desktop sidebar */
+  .filter-sidebar {
+    position: sticky;
+    top: var(--more-padding-vertical);
+    width: var(--more-sidebar-width);
+    flex-shrink: 0;
+  }
+
+  .filter-heading {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    text-transform: none;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--more-filter-gap);
+  }
+
+  .filter-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    color: #8D8D8D;
+    text-align: left;
+    transition: color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .filter-btn.active {
+    color: #333333;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (hover: hover) {
+    .filter-btn:hover {
+      opacity: var(--opacity-hover);
+    }
+  }
+
+  .filter-btn:focus-visible {
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
+  }
+
+  /* Hide sidebar entirely on mobile */
+  @media (max-width: 767px) {
+    .filter-sidebar {
+      display: none;
+    }
+  }
+</style>

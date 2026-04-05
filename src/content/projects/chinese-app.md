@@ -5,11 +5,17 @@ icon: "/icons/projects/sidi.png"
 draft: false
 ---
 
+MVP is live — https://sidi-one.vercel.app/
+
+![MVP](./images/sidi-mvp.png)
+
 Sidi is a Chinese reading tool for serious Chinese learners looking to build real fluency by recognizing patterns in the structure of Chinese characters.
+
+![Cover](./images/sidi-cover.png)
 
 [Why I'm building this](https://charmaynelim.com/log/sidi)
 
-![Cover](./images/sidi-cover.png)
+<!-- This content is hidden
 
 
 ## <b>16 Feb 2026</b>
@@ -70,3 +76,4 @@ Each level needs a different design treatment. L1 shows word-level breakdown, L2
 <br><br><br>
 
 
+-->

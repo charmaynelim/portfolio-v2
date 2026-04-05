@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="480" viewBox="0 0 400 480">
+  <defs>
+    <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8B7B7"/>
+      <stop offset="100%" stop-color="#C48282"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="480" fill="url(#g5)" rx="0"/>
+</svg>

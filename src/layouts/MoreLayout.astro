@@ -1,0 +1,51 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/global/SiteHeader.astro';
+import BackArrow from '../components/global/BackArrow.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="more-page">
+    <div class="more-header">
+      <BackArrow href="/" />
+      <SiteHeader />
+    </div>
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .more-page {
+    padding: var(--more-padding-vertical) var(--more-padding-horizontal);
+    min-height: 100vh;
+  }
+
+  .more-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
+
+  /* Override BackArrow and SiteHeader margins when in more-header */
+  .more-header :global(.back-arrow) {
+    margin-bottom: 0;
+  }
+
+  .more-header :global(.site-header) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    .more-page {
+      padding: var(--more-padding-mobile-top) var(--more-padding-mobile-horizontal);
+    }
+  }
+</style>

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "001",
+    "type": "video",
+    "src": "/images/more/thefigtree.mp4",
+    "alt": "Fig tree digital art using pretext referencing The Bell Jar",
+    "category": ["digital art", "code"],
+    "externalUrl": "https://x.com/shortformcharm/status/2040464734672273675",
+    "title": null,
+    "body": null,
+    "hoverHeader": "the fig tree",
+    "hoverNote": "digital art + code, 2025"
+  },
+  {
+    "id": "002",
+    "type": "image",
+    "src": "/images/more/vibegtm.jpg",
+    "alt": "VIBE GTM event",
+    "category": ["community"],
+    "externalUrl": "https://luma.com/na0x698i",
+    "title": null,
+    "body": null,
+    "hoverHeader": "VIBE GTM",
+    "hoverNote": "community event, 2025"
+  },
+  {
+    "id": "003",
+    "type": "image",
+    "src": "/images/more/builderdinner.png",
+    "alt": "Builder's dinner community event",
+    "category": ["community"],
+    "externalUrl": "https://luma.com/7qedssky",
+    "title": null,
+    "body": null,
+    "hoverHeader": "builder's dinner",
+    "hoverNote": "community event, 2026"
+  },
+  {
+    "id": "004",
+    "type": "image",
+    "src": "/images/more/clarityreader.jpeg",
+    "alt": "Simple markdown reader for personal use",
+    "category": ["tools"],
+    "externalUrl": "https://clarity-markdown-reader.vercel.app/",
+    "title": null,
+    "body": null,
+    "hoverHeader": "clarity reader",
+    "hoverNote": "personal tool for markdown"
+  },
+  {
+    "id": "005",
+    "type": "image",
+    "src": "/images/more/northern-lights.png",
+    "alt": "Northern Lights digital art",
+    "category": ["digital art"],
+    "externalUrl": null,
+    "title": "The Northern Lights, 2022",
+    "body": "Digital art with Adobe Illustrator",
+    "hoverHeader": "the northern lights",
+    "hoverNote": "digital art, 2022"
+  },
+  {
+    "id": "006",
+    "type": "image",
+    "src": "/images/more/flight-ticket.png",
+    "alt": "Print design for HeyMax, a personal finance & travel rewards app",
+    "category": ["digital art"],
+    "externalUrl": null,
+    "title": "Life-sized flight ticket for HeyMax",
+    "body": "The team loves using it (and it was great office decor)",
+    "hoverHeader": "flight ticket",
+    "hoverNote": "print design for HeyMax"
+  },
+  {
+    "id": "007",
+    "type": "image",
+    "src": "/images/more/HM-illustrations.png",
+    "alt": "Product Illustrations for HeyMax, a personal finance & travel rewards app",
+    "category": ["digital art"],
+    "externalUrl": null,
+    "title": "Product illustrations for HeyMax",
+    "body": "Set of product illustrations for a personal finance & travel rewards app",
+    "hoverHeader": "product illustrations",
+    "hoverNote": "designed for heymax"
+  },
+    {
+    "id": "008",
+    "type": "image",
+    "src": "/images/more/ace-cpt.png",
+    "alt": "personal study tracker",
+    "category": ["tools"],
+    "externalUrl": "https://ace-cpt-tracker.vercel.app/",
+    "title": null,
+    "body": null,
+    "hoverHeader": "getting PT certified",
+    "hoverNote": "follow my progress :)"
+  }
+]

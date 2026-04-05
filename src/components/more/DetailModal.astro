@@ -1,0 +1,243 @@
+---
+// DetailModal — lightbox (desktop) / bottom sheet (mobile)
+// Populated dynamically via JS when a grid item is clicked
+---
+
+<div class="modal-overlay" id="detail-modal" role="dialog" aria-modal="true" aria-label="Detail view" hidden>
+  <div class="modal-backdrop" data-close-modal></div>
+
+  <!-- Desktop lightbox -->
+  <div class="modal-content lightbox">
+    <button type="button" class="modal-close" data-close-modal aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="modal-media" id="modal-media"></div>
+    <div class="modal-text" id="modal-text">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-body" id="modal-body"></p>
+    </div>
+  </div>
+
+  <!-- Mobile bottom sheet -->
+  <div class="bottom-sheet">
+    <div class="sheet-handle" aria-hidden="true"><span></span></div>
+    <button type="button" class="modal-close sheet-close" data-close-modal aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="sheet-content">
+      <div class="sheet-media" id="sheet-media"></div>
+      <div class="sheet-text" id="sheet-text">
+        <h2 class="modal-title" id="sheet-title"></h2>
+        <p class="modal-body" id="sheet-body"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay[hidden] {
+    display: none;
+  }
+
+  .modal-overlay.is-open {
+    animation: fadeIn 0.2s ease forwards;
+  }
+
+  .modal-overlay.is-closing {
+    animation: fadeOut 0.2s ease forwards;
+  }
+
+  /* Backdrop */
+  .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  /* Desktop lightbox */
+  .lightbox {
+    position: relative;
+    z-index: 1;
+    background: var(--color-bg-primary);
+    border-radius: 12px;
+    max-width: 80vw;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 32px;
+    animation: scaleIn 0.2s ease forwards;
+  }
+
+  .modal-overlay.is-closing .lightbox {
+    animation: scaleOut 0.2s ease forwards;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-primary);
+    padding: 4px;
+    z-index: 2;
+    border-radius: 4px;
+    transition: opacity 0.15s ease;
+  }
+
+  .modal-close:hover {
+    opacity: var(--opacity-hover);
+  }
+
+  .modal-close:focus-visible {
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
+  }
+
+  .modal-media {
+    margin-top: 16px;
+  }
+
+  .modal-media img,
+  .modal-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .modal-text {
+    margin-top: 16px;
+  }
+
+  .modal-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin: 0 0 8px 0;
+  }
+
+  .modal-body {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-body);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Bottom sheet — hidden on desktop */
+  .bottom-sheet {
+    display: none;
+  }
+
+  /* Mobile overrides */
+  @media (max-width: 767px) {
+    .lightbox {
+      display: none;
+    }
+
+    .bottom-sheet {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background: var(--color-bg-primary);
+      border-radius: 16px 16px 0 0;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 12px 20px 32px;
+      animation: slideUp 0.3s ease-out forwards;
+    }
+
+    .modal-overlay.is-closing .bottom-sheet {
+      animation: slideDown 0.3s ease-out forwards;
+    }
+
+    .sheet-handle {
+      display: flex;
+      justify-content: center;
+      padding: 4px 0 16px;
+    }
+
+    .sheet-handle span {
+      width: 36px;
+      height: 4px;
+      background: var(--color-divider);
+      border-radius: 2px;
+      display: block;
+    }
+
+    .sheet-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+    }
+
+    .sheet-content {
+      margin-top: 16px;
+    }
+
+    .sheet-media img,
+    .sheet-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    .sheet-text {
+      margin-top: 16px;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes scaleOut {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+</style>

@@ -12,13 +12,6 @@
       "icon": "/icons/projects/sidi.png"
     },
     {
-      "title": "Clarity",
-      "subtitle": "personal tool for all my AI markdown",
-      "href": "https://clarity-markdown-reader.vercel.app/",
-      "icon": "/icons/projects/clarity.png",
-      "external": true
-    },
-    {
       "title": "HeyMax",
       "subtitle": "founding designer & marketer",
       "href": "https://www.figma.com/proto/JFvZ8urMxDWxbwggpuQk4M/Charmayne-Lim---Design-Portfolio?page-id=0%3A1&node-id=1101-40466&viewport=120%2C140%2C0.07&t=7TWiZ0hBVbr4o9Wv-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1101%3A40394",
@@ -30,6 +23,11 @@
       "href": "/design",
       "icon": "/icons/projects/heymax.png",
       "hidden": true
+    },
+    {
+      "title": "More work (& play)",
+      "href": "/more",
+      "icon": "/icons/projects/clarity.png"
     },
     {
       "title": "Notes",

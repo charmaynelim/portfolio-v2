@@ -1,0 +1,50 @@
+---
+import GridItem from './GridItem.astro';
+
+interface MoreItem {
+  id: string;
+  type: 'image' | 'video';
+  src: string;
+  poster?: string;
+  alt: string;
+  category: string | string[];
+  externalUrl?: string | null;
+  title?: string | null;
+  body?: string | null;
+  hoverHeader?: string | null;
+  hoverNote?: string | null;
+}
+
+interface Props {
+  items: MoreItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="masonry-grid">
+  {items.map((item) => (
+    <GridItem item={item} />
+  ))}
+</div>
+
+<style>
+  .masonry-grid {
+    columns: 3;
+    column-gap: var(--more-grid-gap);
+    flex: 1;
+    min-width: 0;
+  }
+
+  @media (max-width: 1023px) and (min-width: 768px) {
+    .masonry-grid {
+      columns: 3;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .masonry-grid {
+      columns: 1;
+    }
+  }
+</style>

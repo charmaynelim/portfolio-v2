@@ -1,0 +1,362 @@
+---
+import MoreLayout from '../layouts/MoreLayout.astro';
+import FilterSidebar from '../components/more/FilterSidebar.astro';
+import MasonryGrid from '../components/more/MasonryGrid.astro';
+import DetailModal from '../components/more/DetailModal.astro';
+import moreItems from '../data/more-items.json';
+
+// Derive unique categories from items (supports array categories)
+const categories = [...new Set(moreItems.flatMap((item) =>
+  Array.isArray(item.category) ? item.category : [item.category]
+))];
+---
+
+<MoreLayout title="experiments / play — charmayne" description="A collection of experiments, graphics, motion, and illustration work.">
+  <div class="more-body">
+    <FilterSidebar categories={categories} />
+    <MasonryGrid items={moreItems} />
+  </div>
+  <DetailModal />
+  <!-- Shared cursor tooltip (desktop only) -->
+  <div class="hover-tooltip" id="hover-tooltip" aria-hidden="true">
+    <div class="hover-tooltip-header" id="hover-tooltip-header"></div>
+    <div class="hover-tooltip-note" id="hover-tooltip-note"></div>
+  </div>
+</MoreLayout>
+
+<style>
+  .more-body {
+    display: flex;
+    gap: 40px;
+  }
+
+  @media (max-width: 767px) {
+    .more-body {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  /* Cursor-following tooltip (desktop only) */
+  .hover-tooltip {
+    position: fixed;
+    z-index: 900;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 150ms ease;
+    max-width: 260px;
+  }
+
+  .hover-tooltip.is-visible {
+    opacity: 1;
+  }
+
+  .hover-tooltip-header {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .hover-tooltip-note {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-secondary);
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+
+  @media (hover: none) {
+    .hover-tooltip {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // === Filtering Logic (staggered fade animation) ===
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const gridItems = document.querySelectorAll<HTMLElement>('[data-category]');
+  let isAnimating = false;
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (isAnimating) return;
+      const category = btn.dataset.filter;
+
+      // Update active state on ALL filter buttons
+      filterButtons.forEach((b) => {
+        const isActive = b.dataset.filter === category;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+
+      // Determine which items match and which don't
+      const toHide: HTMLElement[] = [];
+      const toShow: HTMLElement[] = [];
+
+      gridItems.forEach((item) => {
+        const itemCategories = (item.dataset.category || '').split(',');
+        const matches = category === 'all' || itemCategories.includes(category!);
+        if (matches) {
+          toShow.push(item);
+        } else {
+          toHide.push(item);
+        }
+      });
+
+      isAnimating = true;
+
+      // Phase 1: Fade out non-matching items simultaneously (~150ms)
+      if (toHide.length > 0) {
+        toHide.forEach((item) => {
+          item.style.transition = 'opacity 150ms ease, transform 150ms ease';
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+        });
+      }
+
+      const fadeOutDuration = toHide.length > 0 ? 150 : 0;
+
+      setTimeout(() => {
+        // Hide faded-out items
+        toHide.forEach((item) => {
+          item.style.display = 'none';
+          item.style.transition = '';
+          item.style.opacity = '';
+          item.style.transform = '';
+        });
+
+        // Phase 2: Stagger fade in matching items (30ms delay per item, 200ms each)
+        toShow.forEach((item, index) => {
+          if (item.style.display === 'none') {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            item.style.display = '';
+          } else {
+            // Already visible — still animate for consistency
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+          }
+
+          setTimeout(() => {
+            item.style.transition = 'opacity 200ms ease, transform 200ms ease';
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, index * 30);
+        });
+
+        // Clean up after all animations complete
+        const totalFadeIn = toShow.length * 30 + 200;
+        setTimeout(() => {
+          toShow.forEach((item) => {
+            item.style.transition = '';
+            item.style.opacity = '';
+            item.style.transform = '';
+          });
+          isAnimating = false;
+        }, totalFadeIn);
+      }, fadeOutDuration);
+    });
+  });
+
+  // === Modal / Bottom Sheet Logic ===
+  const modal = document.getElementById('detail-modal') as HTMLElement;
+  const modalMedia = document.getElementById('modal-media') as HTMLElement;
+  const modalTitle = document.getElementById('modal-title') as HTMLElement;
+  const modalBody = document.getElementById('modal-body') as HTMLElement;
+  const modalText = document.getElementById('modal-text') as HTMLElement;
+  const sheetMedia = document.getElementById('sheet-media') as HTMLElement;
+  const sheetTitle = document.getElementById('sheet-title') as HTMLElement;
+  const sheetBody = document.getElementById('sheet-body') as HTMLElement;
+  const sheetText = document.getElementById('sheet-text') as HTMLElement;
+
+  const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+
+  let previouslyFocused: HTMLElement | null = null;
+
+  function openModal(item: HTMLElement) {
+    const src = item.dataset.src || '';
+    const alt = item.dataset.alt || '';
+    const title = item.dataset.title || '';
+    const body = item.dataset.body || '';
+    const type = item.dataset.type || 'image';
+    const poster = item.dataset.poster || '';
+
+    // Populate both lightbox and bottom sheet
+    const mediaHTML =
+      type === 'video'
+        ? `<video src="${src}" poster="${poster}" controls playsinline style="width:100%;height:auto;display:block;border-radius:8px;" aria-label="${alt}"></video>`
+        : `<img src="${src}" alt="${alt}" style="width:100%;height:auto;display:block;border-radius:8px;" />`;
+
+    modalMedia.innerHTML = mediaHTML;
+    sheetMedia.innerHTML = mediaHTML;
+
+    if (title) {
+      modalTitle.textContent = title;
+      sheetTitle.textContent = title;
+      modalText.style.display = '';
+      sheetText.style.display = '';
+    } else {
+      modalText.style.display = 'none';
+      sheetText.style.display = 'none';
+    }
+
+    if (body) {
+      modalBody.textContent = body;
+      sheetBody.textContent = body;
+      modalText.style.display = '';
+      sheetText.style.display = '';
+    } else if (!title) {
+      modalText.style.display = 'none';
+      sheetText.style.display = 'none';
+    } else {
+      modalBody.textContent = '';
+      sheetBody.textContent = '';
+    }
+
+    previouslyFocused = document.activeElement as HTMLElement;
+    modal.hidden = false;
+    modal.classList.remove('is-closing');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+
+    // Focus the close button
+    requestAnimationFrame(() => {
+      const closeBtn = modal.querySelector<HTMLButtonElement>('[data-close-modal]:not(.modal-backdrop)');
+      closeBtn?.focus();
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.classList.add('is-closing');
+    document.body.style.overflow = '';
+
+    const onEnd = () => {
+      modal.hidden = true;
+      modal.classList.remove('is-closing');
+      modalMedia.innerHTML = '';
+      sheetMedia.innerHTML = '';
+      previouslyFocused?.focus();
+      modal.removeEventListener('animationend', onEnd);
+    };
+
+    modal.addEventListener('animationend', onEnd, { once: true });
+
+    // Fallback if animation doesn't fire
+    setTimeout(() => {
+      if (!modal.hidden) {
+        modal.hidden = true;
+        modal.classList.remove('is-closing');
+        previouslyFocused?.focus();
+      }
+    }, 400);
+  }
+
+  // Open modal on grid item button clicks
+  document.querySelectorAll<HTMLButtonElement>('[data-open-modal]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const gridItem = btn.closest('[data-id]') as HTMLElement;
+      if (gridItem) openModal(gridItem);
+    });
+  });
+
+  // Close on backdrop / close button clicks
+  document.querySelectorAll('[data-close-modal]').forEach((el) => {
+    el.addEventListener('click', closeModal);
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) {
+      closeModal();
+    }
+  });
+
+  // === Cursor-following Hover Tooltip (desktop only) ===
+  const tooltip = document.getElementById('hover-tooltip') as HTMLElement;
+  const tooltipHeader = document.getElementById('hover-tooltip-header') as HTMLElement;
+  const tooltipNote = document.getElementById('hover-tooltip-note') as HTMLElement;
+  const isDesktop = () => window.matchMedia('(hover: hover)').matches;
+  const OFFSET = 12;
+
+  function positionTooltip(e: MouseEvent) {
+    const tw = tooltip.offsetWidth;
+    const th = tooltip.offsetHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // Default: bottom-right of cursor
+    let left = e.clientX + OFFSET;
+    let top = e.clientY + OFFSET;
+
+    // Flip left if near right edge
+    if (left + tw > vw - 8) {
+      left = e.clientX - OFFSET - tw;
+    }
+    // Flip up if near bottom edge
+    if (top + th > vh - 8) {
+      top = e.clientY - OFFSET - th;
+    }
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-id]').forEach((item) => {
+    const header = item.dataset.hoverHeader || '';
+    const note = item.dataset.hoverNote || '';
+    if (!header && !note) return;
+
+    item.addEventListener('mouseenter', (e) => {
+      if (!isDesktop()) return;
+      tooltipHeader.textContent = header;
+      tooltipNote.textContent = note;
+      tooltipHeader.style.display = header ? '' : 'none';
+      tooltipNote.style.display = note ? '' : 'none';
+      positionTooltip(e);
+      tooltip.classList.add('is-visible');
+    });
+
+    item.addEventListener('mousemove', (e) => {
+      positionTooltip(e);
+    });
+
+    item.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('is-visible');
+    });
+  });
+
+  // Focus trap
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+
+    const focusable = modal.querySelectorAll<HTMLElement>(
+      'button:not([hidden]), [href]:not([hidden]), input:not([hidden]), select:not([hidden]), textarea:not([hidden]), [tabindex]:not([tabindex="-1"]):not([hidden])'
+    );
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+</script>
