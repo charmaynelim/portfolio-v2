@@ -8,7 +8,7 @@ description: "A case study on designing for heymax, a consumer fintech and trave
 meta1Label: "Role"
 meta1Value: "Founding Designer"
 meta2Label: "Team"
-meta2Value: "4 co-founders, 1 PM"
+meta2Value: "Founders, 1 PM"
 meta3Label: "Duration"
 meta3Value: "2023 - 2025"
 meta4Label: "Tools"
