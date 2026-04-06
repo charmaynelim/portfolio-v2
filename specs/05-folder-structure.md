@@ -22,9 +22,11 @@
 ├── src/
 │   ├── components/
 │   │   ├── global/
-│   │   │   ├── SiteHeader.astro
-│   │   │   ├── BackArrow.astro
+│   │   │   ├── StickyHeader.astro
+│   │   │   ├── SiteHeader.astro (legacy)
+│   │   │   ├── BackArrow.astro (legacy)
 │   │   │   ├── ContentContainer.astro
+│   │   │   ├── ContentLightbox.astro
 │   │   │   └── HorizontalDivider.astro
 │   │   │
 │   │   ├── homepage/
@@ -33,12 +35,18 @@
 │   │   │   ├── ProjectListItem.astro
 │   │   │   └── Footer.astro
 │   │   │
-│   │   └── blog/
-│   │       ├── BlogPostList.astro
-│   │       ├── BlogPostListItem.astro
-│   │       ├── PostMetadata.astro
-│   │       ├── PostTitle.astro
-│   │       └── PostBody.astro
+│   │   ├── blog/
+│   │   │   ├── BlogPostList.astro
+│   │   │   ├── BlogPostListItem.astro
+│   │   │   ├── PostMetadata.astro
+│   │   │   ├── PostTitle.astro
+│   │   │   └── PostBody.astro
+│   │   │
+│   │   └── case-study/
+│   │       ├── CaseStudySidebar.astro
+│   │       ├── CaseStudyMeta.astro
+│   │       ├── CaseStudyLinkRow.astro
+│   │       └── CaseStudyBody.astro
 │   │
 │   ├── content/
 │   │   ├── config.ts
@@ -49,11 +57,16 @@
 │   │   │   ├── example-post-1.md
 │   │   │   └── example-post-2.md
 │   │   │
-│   │   └── projects/
+│   │   ├── projects/
+│   │   │   ├── images/
+│   │   │   │   └── (project images)
+│   │   │   ├── chinese-app.md
+│   │   │   └── conversations.md
+│   │   │
+│   │   └── case-studies/
 │   │       ├── images/
-│   │       │   └── (project images)
-│   │       ├── chinese-app.md
-│   │       └── conversations.md
+│   │       │   └── (case study images)
+│   │       └── azuki.md
 │   │
 │   ├── data/
 │   │   └── homepage.json
@@ -62,20 +75,29 @@
 │   │   ├── BaseLayout.astro
 │   │   ├── HomeLayout.astro
 │   │   ├── BlogLayout.astro
-│   │   └── ProjectLayout.astro
+│   │   ├── ProjectLayout.astro
+│   │   ├── MoreLayout.astro
+│   │   └── CaseStudyLayout.astro
 │   │
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── a-chinese-app-for-heritage-learners.astro
 │   │   ├── some-conversations-dont-wait.astro
-│   │   └── log/
-│   │       ├── index.astro
+│   │   ├── more.astro
+│   │   ├── log/
+│   │   │   ├── index.astro
+│   │   │   └── [slug].astro
+│   │   └── case-studies/
 │   │       └── [slug].astro
 │   │
 │   ├── styles/
 │   │   ├── reset.css
 │   │   ├── tokens.css
 │   │   └── global.css
+│   │
+│   ├── plugins/
+│   │   ├── remark-video.mjs
+│   │   └── remark-annotations.mjs
 │   │
 │   └── utils/
 │       └── helpers.ts
@@ -116,6 +138,7 @@ Markdown files for blog posts and projects (Astro Content Collections).
 - **`config.ts`**: Defines content collection schemas
 - **`/blog`**: Blog post markdown files + images subfolder
 - **`/projects`**: Project markdown files + images subfolder
+- **`/case-studies`**: Case study markdown files + images subfolder
 
 ### `/src/data`
 JSON data files (homepage content, social links).
@@ -124,8 +147,10 @@ JSON data files (homepage content, social links).
 Page templates that wrap content.
 - **`BaseLayout.astro`**: Root layout (HTML structure, fonts, global styles)
 - **`HomeLayout.astro`**: Extends BaseLayout, includes Footer
-- **`BlogLayout.astro`**: Extends BaseLayout, includes SiteHeader + BackArrow
-- **`ProjectLayout.astro`**: Extends BaseLayout, includes SiteHeader + BackArrow
+- **`BlogLayout.astro`**: Extends BaseLayout, includes StickyHeader
+- **`ProjectLayout.astro`**: Extends BaseLayout, includes StickyHeader
+- **`MoreLayout.astro`**: Extends BaseLayout, includes StickyHeader (full-width)
+- **`CaseStudyLayout.astro`**: Extends BaseLayout, includes StickyHeader (full-width dual-column)
 
 ### `/src/pages`
 File-based routing (each file = a route).

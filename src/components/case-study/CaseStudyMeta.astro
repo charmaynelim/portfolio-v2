@@ -1,0 +1,67 @@
+---
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  meta: MetaItem[];
+}
+
+const { meta } = Astro.props;
+---
+
+<div class="cs-meta">
+  {meta.map((item) => (
+    <div class="cs-meta-col">
+      <span class="cs-meta-label">{item.label}</span>
+      <div class="cs-meta-value">
+        {item.value.split(/[,\n]/).map((line) => line.trim()).filter(Boolean).map((line) => (
+          <span class="cs-meta-line">{line}</span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .cs-meta {
+    display: flex;
+    gap: var(--cs-meta-gap);
+  }
+
+  @media (max-width: 767px) {
+    .cs-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--cs-meta-gap);
+    }
+  }
+
+  .cs-meta-col {
+    flex: 1;
+  }
+
+  .cs-meta-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .cs-meta-value {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs-meta-line {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+</style>

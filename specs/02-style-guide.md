@@ -140,11 +140,31 @@
   /* Container */
   --max-content-width: 500px;
 
+  /* Sticky Header */
+  --sticky-header-height: 60px;
+
   /* Icons */
   --icon-back-arrow-size: 20px;
 
   /* Dividers */
   --divider-height: 1px;
+
+  /* Case Study — Layout */
+  --cs-left-column-width: 200px;
+  --cs-column-gap: 80px;
+  --cs-content-max-width: 700px;
+
+  /* Case Study — Padding */
+  --cs-padding-horizontal: 44px;
+  --cs-padding-vertical: 44px;
+  --cs-padding-mobile-horizontal: 20px;
+  --cs-padding-mobile-top: 40px;
+
+  /* Case Study — Metadata */
+  --cs-meta-gap: 24px;
+
+  /* Case Study — Inline Links */
+  --cs-link-row-padding-vertical: 16px;
 }
 ```
 

@@ -1,0 +1,144 @@
+---
+// ContentLightbox — desktop-only lightbox for images/videos in content bodies.
+// Targets media inside .post-body and .cs-body only (not .more grid items).
+---
+
+<div id="content-lightbox" class="content-lightbox" hidden>
+  <div class="content-lightbox-backdrop" data-close-lightbox></div>
+  <div class="content-lightbox-modal">
+    <button class="content-lightbox-close" data-close-lightbox aria-label="Close lightbox">&times;</button>
+    <div class="content-lightbox-media" id="content-lightbox-media"></div>
+  </div>
+</div>
+
+<style>
+  .content-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
+
+  .content-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .content-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  .content-lightbox-modal {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding: 32px;
+    background: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-lightbox-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--color-text-primary, #333333);
+    font-size: 28px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    opacity: 0.8;
+    transition: opacity 150ms ease;
+  }
+
+  .content-lightbox-close:hover {
+    opacity: 1;
+  }
+
+  .content-lightbox-media :global(img),
+  .content-lightbox-media :global(video) {
+    max-width: calc(100vw - 64px);
+    max-height: calc(100vh - 64px);
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+</style>
+
+<script>
+  const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
+
+  const lightbox = document.getElementById('content-lightbox') as HTMLElement;
+  const mediaContainer = document.getElementById('content-lightbox-media') as HTMLElement;
+
+  // Target images/videos inside content bodies only (not .more grid)
+  const contentSelectors = '.post-body img:not(.annotation-arrow), .post-body video, .cs-body img:not(.annotation-arrow), .cs-body video';
+
+  // Add pointer cursor and click handler to content media
+  document.querySelectorAll<HTMLElement>(contentSelectors).forEach((el) => {
+    // Desktop pointer cursor
+    el.style.cursor = 'pointer';
+
+    el.addEventListener('click', () => {
+      if (!isDesktop()) return;
+      openLightbox(el);
+    });
+  });
+
+  function openLightbox(el: HTMLElement) {
+    let html = '';
+
+    if (el.tagName === 'VIDEO') {
+      const video = el as HTMLVideoElement;
+      html = `<video src="${video.src}" autoplay muted loop playsinline style="width:100%;height:auto;display:block;border-radius:8px;"></video>`;
+    } else if (el.tagName === 'IMG') {
+      const img = el as HTMLImageElement;
+      html = `<img src="${img.src}" alt="${img.alt || ''}" style="width:100%;height:auto;display:block;border-radius:8px;" />`;
+    }
+
+    mediaContainer.innerHTML = html;
+    lightbox.hidden = false;
+    // Force reflow before adding class for transition
+    lightbox.offsetHeight;
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      lightbox.hidden = true;
+      mediaContainer.innerHTML = '';
+    }, 200);
+  }
+
+  // Close on backdrop / close button
+  document.querySelectorAll('[data-close-lightbox]').forEach((el) => {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  // Close on Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+</script>

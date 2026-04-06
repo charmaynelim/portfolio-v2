@@ -5,8 +5,10 @@
 / (Homepage)
 ├── /a-chinese-app-for-heritage-learners (Project 1)
 ├── /some-conversations-dont-wait (Project 2)
-└── /log (Blog Index)
-    └── /log/[slug] (Individual Blog Post)
+├── /case-studies/[slug] (Case Study — dual-column layout)
+├── /log (Blog Index)
+│   └── /log/[slug] (Individual Blog Post)
+└── /more (Experiments / Play)
 ```
 
 ## Pages
@@ -18,6 +20,8 @@
 | `/some-conversations-dont-wait` | `src/pages/some-conversations-dont-wait.astro` | Project case study | ProjectLayout |
 | `/log` | `src/pages/log/index.astro` | Blog post listing | BlogLayout |
 | `/log/[slug]` | `src/pages/log/[slug].astro` | Individual blog post | BlogLayout |
+| `/case-studies/[slug]` | `src/pages/case-studies/[slug].astro` | Case study (dual-column) | CaseStudyLayout |
+| `/more` | `src/pages/more.astro` | Experiments / play grid | MoreLayout |
 
 ## Navigation Flow
 
@@ -46,8 +50,10 @@
 ```
 BaseLayout.astro (HTML structure, fonts, global styles)
 ├── HomeLayout.astro (includes Footer)
-├── BlogLayout.astro (includes SiteHeader + BackArrow)
-└── ProjectLayout.astro (includes SiteHeader + BackArrow)
+├── BlogLayout.astro (includes StickyHeader)
+├── ProjectLayout.astro (includes StickyHeader)
+├── MoreLayout.astro (includes StickyHeader, full-width)
+└── CaseStudyLayout.astro (includes StickyHeader, full-width dual-column)
 ```
 
 ### Routing Strategy

@@ -1,0 +1,142 @@
+---
+// CaseStudyBody renders markdown content with proper typography and spacing
+---
+
+<div class="cs-body">
+  <slot />
+</div>
+
+<style>
+  .cs-body {
+    max-width: var(--cs-content-max-width);
+    position: relative;
+    overflow: visible;
+  }
+
+  .cs-body :global(p) {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-body);
+    line-height: 1.5;
+    margin: 0 0 var(--spacing-paragraph);
+  }
+
+  .cs-body :global(h2) {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    margin: 32px 0 12px;
+  }
+
+  .cs-body :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .cs-body :global(img:not(.annotation-arrow)) {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--spacing-image) 0;
+    border-radius: 8px;
+  }
+
+  .cs-body :global(video) {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: var(--spacing-image) 0;
+    border-radius: 8px;
+  }
+
+  .cs-body :global(ol),
+  .cs-body :global(ul) {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-body);
+    line-height: 1.5;
+    margin: 0 0 var(--spacing-paragraph);
+    padding-left: 20px;
+  }
+
+  .cs-body :global(li) {
+    margin-bottom: 4px;
+  }
+
+  .cs-body :global(strong) {
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Annotations — desktop: absolute in margins */
+  @media (min-width: 768px) {
+    .cs-body :global(.annotation) {
+      position: absolute;
+      max-width: 200px;
+    }
+
+    .cs-body :global(.annotation[data-side="right"]) {
+      left: calc(100% + 52px);
+    }
+
+    .cs-body :global(.annotation[data-side="left"]) {
+      right: calc(100% + 52px);
+    }
+
+    .cs-body :global(.annotation[data-side="right"] .annotation-text) {
+      margin-left: 40px;
+    }
+
+    .cs-body :global(.annotation[data-side="left"] .annotation-text) {
+      margin-left: -20px;
+    }
+
+    .cs-body :global(.annotation[data-side="right"] .annotation-arrow) {
+      margin-left: -20px;
+    }
+
+    .cs-body :global(.annotation[data-side="left"] .annotation-arrow) {
+      margin-left: 10px;
+      transform: scaleY(-1) translate(var(--arrow-x, 0px), var(--arrow-y, 0px)) rotate(var(--arrow-rotate, 0deg));
+    }
+  }
+
+  /* Annotations — mobile: inline in flow */
+  @media (max-width: 767px) {
+    .cs-body :global(.annotation) {
+      display: none;
+    }
+  }
+
+  .cs-body :global(.annotation-text) {
+    font-family: var(--font-handwritten);
+    font-size: 18px;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    display: block;
+    transform: translate(var(--text-x, 0px), var(--text-y, 0px));
+  }
+
+  @media (max-width: 767px) {
+    .cs-body :global(.annotation-text) {
+      font-size: 16px;
+      transform: none;
+    }
+  }
+
+  .cs-body :global(.annotation-arrow) {
+    display: block;
+    max-width: 80px;
+    height: auto;
+    margin-top: 18px;
+    transform: translate(var(--arrow-x, 0px), var(--arrow-y, 0px)) rotate(var(--arrow-rotate, 0deg));
+  }
+
+  @media (max-width: 767px) {
+    .cs-body :global(.annotation-arrow) {
+      display: none;
+    }
+  }
+</style>

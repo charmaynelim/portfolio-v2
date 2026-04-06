@@ -27,7 +27,7 @@ Add a new entry to the homepage `<ProjectList>`:
 ### Navigation Behavior
 - Homepage → "experiments / play" → `/more`
 - `/more` → Back arrow → Homepage (`/`)
-- `/more` → SiteHeader "charmayne" → Homepage (`/`)
+- `/more` → StickyHeader "charmayne" → Homepage (`/`)
 
 ---
 
@@ -350,6 +350,7 @@ Using `public/` (not `src/content/`) because these are standalone assets, not ma
 - Manages active filter state (client-side JS)
 - Hidden entirely on mobile (<768px) — no filtering UI on mobile
 - Dispatches a custom event or directly manipulates grid item visibility
+- Sticky `top` value uses `--sticky-header-height` to sit below the sticky header on desktop
 
 **Props:**
 - `categories` (string[], required): List of unique category values, auto-derived from items

@@ -22,7 +22,32 @@ const projects = defineCollection({
   }),
 });
 
+const caseStudies = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    urlSlug: z.string(),
+    subtitle: z.string().optional(),
+    order: z.number(),
+    description: z.string().optional(),
+    coverImage: z.string().optional(),
+    meta1Label: z.string().optional(),
+    meta1Value: z.string().optional(),
+    meta2Label: z.string().optional(),
+    meta2Value: z.string().optional(),
+    meta3Label: z.string().optional(),
+    meta3Value: z.string().optional(),
+    meta4Label: z.string().optional(),
+    meta4Value: z.string().optional(),
+    links: z.array(z.object({
+      label: z.string(),
+      href: z.string(),
+    })).optional(),
+  }),
+});
+
 export const collections = {
   blog,
   projects,
+  'case-studies': caseStudies,
 };

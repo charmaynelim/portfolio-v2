@@ -2,6 +2,7 @@
 import '../styles/reset.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
+import ContentLightbox from '../components/global/ContentLightbox.astro';
 
 interface Props {
   title?: string;
@@ -44,5 +45,6 @@ const {
   </head>
   <body>
     <slot />
+    <ContentLightbox />
   </body>
 </html>

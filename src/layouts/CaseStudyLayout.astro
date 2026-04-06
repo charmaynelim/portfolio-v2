@@ -12,20 +12,21 @@ const { title, description } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <StickyHeader backHref="/" />
-  <div class="more-page">
+  <div class="case-study-page">
     <slot />
   </div>
 </BaseLayout>
 
 <style>
-  .more-page {
-    padding: 0 var(--more-padding-horizontal) var(--more-padding-vertical);
+  .case-study-page {
+    position: relative;
+    padding: var(--cs-padding-vertical) var(--cs-padding-horizontal);
     min-height: 100vh;
   }
 
   @media (max-width: 767px) {
-    .more-page {
-      padding: 0 var(--more-padding-mobile-horizontal) var(--more-padding-mobile-top);
+    .case-study-page {
+      padding: var(--cs-padding-mobile-top) var(--cs-padding-mobile-horizontal);
     }
   }
 </style>

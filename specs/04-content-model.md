@@ -123,6 +123,67 @@ const allProjects = (await getCollection('projects'))
 
 ---
 
+## Case Studies
+
+### File Location
+`src/content/case-studies/[slug].md`
+
+### Frontmatter Schema
+```yaml
+---
+title: "Company or Product Name"
+subtitle: "Type of work"
+order: 1
+description: "SEO meta description"
+meta1Label: "Role"
+meta1Value: "Product Designer"
+meta2Label: "Collaborators"
+meta2Value: "Hoshi, Alice Cai"
+meta3Label: "Duration"
+meta3Value: "2022 - Present"
+meta4Label: "Tools"
+meta4Value: "Figma, React"
+links:
+  - label: "azuki.com"
+    href: "https://azuki.com"
+---
+```
+
+### Content Collections Schema
+```typescript
+const caseStudies = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    subtitle: z.string().optional(),
+    order: z.number(),
+    description: z.string().optional(),
+    meta1Label: z.string().optional(),
+    meta1Value: z.string().optional(),
+    meta2Label: z.string().optional(),
+    meta2Value: z.string().optional(),
+    meta3Label: z.string().optional(),
+    meta3Value: z.string().optional(),
+    meta4Label: z.string().optional(),
+    meta4Value: z.string().optional(),
+    links: z.array(z.object({
+      label: z.string(),
+      href: z.string(),
+    })).optional(),
+  }),
+});
+```
+
+### Routing
+- **Route:** `/case-studies/[slug]`
+- **File:** `src/pages/case-studies/[slug].astro`
+- Slug derived from filename (e.g., `azuki.md` → `/case-studies/azuki`)
+
+### Homepage Integration
+Case studies appear in the homepage `<ProjectList>` alongside existing projects, merged and sorted by `order`.
+
+---
+
 ## Homepage Data
 
 ### Option 1: JSON File

@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import CaseStudySidebar from '../../components/case-study/CaseStudySidebar.astro';
+import CaseStudyMeta from '../../components/case-study/CaseStudyMeta.astro';
+import CaseStudyLinkRow from '../../components/case-study/CaseStudyLinkRow.astro';
+import CaseStudyBody from '../../components/case-study/CaseStudyBody.astro';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('case-studies');
+  return studies.map((study) => ({
+    params: { slug: study.data.urlSlug },
+    props: { study },
+  }));
+}
+
+const { study } = Astro.props;
+const { Content } = await study.render();
+
+// Build metadata array from frontmatter
+const meta = [
+  { label: study.data.meta1Label, value: study.data.meta1Value },
+  { label: study.data.meta2Label, value: study.data.meta2Value },
+  { label: study.data.meta3Label, value: study.data.meta3Value },
+  { label: study.data.meta4Label, value: study.data.meta4Value },
+].filter((item): item is { label: string; value: string } => !!item.label && !!item.value);
+
+const links = study.data.links || [];
+
+// Resolve cover image through Astro's image pipeline
+const coverImagePath = study.data.coverImage;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/content/case-studies/images/**/*.{png,jpg,jpeg,webp,svg}');
+let coverImage: ImageMetadata | undefined;
+if (coverImagePath) {
+  const resolvedPath = `/src/content/case-studies/${coverImagePath.replace('./', '')}`;
+  const imageImport = images[resolvedPath];
+  if (imageImport) {
+    coverImage = (await imageImport()).default;
+  }
+}
+---
+
+<CaseStudyLayout title={`${study.data.title} — charmayne`} description={study.data.description}>
+  <CaseStudySidebar title={study.data.title} subtitle={study.data.subtitle} />
+  <div class="case-study-right">
+    {coverImage && (
+      <Image src={coverImage} alt="" class="cs-cover" />
+    )}
+    {meta.length > 0 && <CaseStudyMeta meta={meta} />}
+    {links.length > 0 && (
+      <div class="cs-links">
+        {links.map((link) => (
+          <CaseStudyLinkRow label={link.label} href={link.href} />
+        ))}
+      </div>
+    )}
+    <CaseStudyBody>
+      <Content />
+    </CaseStudyBody>
+  </div>
+</CaseStudyLayout>
+
+<style>
+  .case-study-right {
+    max-width: var(--cs-content-max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .cs-cover {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .cs-links {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

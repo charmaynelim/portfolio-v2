@@ -2,38 +2,49 @@
 
 ## Global Components
 
-### `<SiteHeader>`
-**Used on:** Blog index, blog post, project pages
+### `<StickyHeader>`
+**Used on:** All subpages (blog, project, more, case studies)
+**File:** `src/components/global/StickyHeader.astro`
 **Responsibility:**
-- Displays "charmayne" text as clickable link to homepage
-- Positioned top-left of content area
-- Hover state: 80% opacity
+- Wraps back arrow (left) and "charmayne" link (right) in a single header bar
+- `position: sticky; top: 0; z-index: 100` on desktop (≥768px)
+- `position: static` on mobile (<768px)
+- Solid background: `--color-bg-primary` (#F2F2F2)
+- Height: `--sticky-header-height` (60px)
 
 **Props:**
-- None (always links to `/`)
+- `backHref` (string, required): URL for the back arrow
 
 **Example usage:**
 ```astro
-<SiteHeader />
+<StickyHeader backHref="/" />
+<StickyHeader backHref="/log" />
 ```
 
 ---
 
-### `<BackArrow>`
-**Used on:** Blog index, blog post, project pages
+### `<ContentLightbox>`
+**Used on:** All pages (included in BaseLayout)
+**File:** `src/components/global/ContentLightbox.astro`
 **Responsibility:**
-- Displays left-pointing arrow icon (20x20px)
-- Navigates to parent page
-- Hover state: 80% opacity
+- Desktop-only (≥768px) lightbox for images/videos inside content bodies
+- Targets `.post-body` and `.cs-body` media only (not /more grid items)
+- Click image/video to open centered overlay (max 90vw × 85vh, 32px padding)
+- Backdrop: rgba(0,0,0,0.5), click to close
+- Esc to close, pointer cursor on hoverable media
+- Videos autoplay muted loop in lightbox
+- 200ms fade animation
+- Single shared DOM element, populated dynamically
 
-**Props:**
-- `href` (string, required): URL to navigate to
+---
 
-**Example usage:**
-```astro
-<BackArrow href="/" />
-<BackArrow href="/log" />
-```
+### `<SiteHeader>` (legacy)
+**Note:** Replaced by `<StickyHeader>` in all layouts. Retained for reference.
+
+---
+
+### `<BackArrow>` (legacy)
+**Note:** Replaced by `<StickyHeader>` in all layouts. Retained for reference.
 
 ---
 
@@ -262,6 +273,60 @@
   <Content />  <!-- Astro's markdown content component -->
 </PostBody>
 ```
+
+---
+
+## Case Study Components
+
+### `<CaseStudySidebar>`
+**File:** `src/components/case-study/CaseStudySidebar.astro`
+**Responsibility:**
+- Displays title + subtitle
+- Sticky on desktop (top = `--sticky-header-height`), static on mobile
+- On mobile: renders at top of page before content
+
+**Props:**
+- `title` (string, required)
+- `subtitle` (string, optional)
+
+---
+
+### `<CaseStudyMeta>`
+**File:** `src/components/case-study/CaseStudyMeta.astro`
+**Responsibility:**
+- Renders metadata columns in a horizontal row
+- Each column has a label (uppercase, Geist Mono 10px) and value (Inter Medium 14px)
+- Desktop: columns in a row
+- Mobile: 2×2 grid
+
+**Props:**
+- `meta` (array of `{ label: string; value: string }`)
+
+---
+
+### `<CaseStudyLinkRow>`
+**File:** `src/components/case-study/CaseStudyLinkRow.astro`
+**Responsibility:**
+- Full-width row with text + ↗ arrow icon
+- Horizontal dividers above and below
+- Opens external URL in new tab
+- Hover: text + arrow fade to 50% opacity
+
+**Props:**
+- `label` (string, required): Display text
+- `href` (string, required): External URL
+
+---
+
+### `<CaseStudyBody>`
+**File:** `src/components/case-study/CaseStudyBody.astro`
+**Responsibility:**
+- Renders markdown content with proper spacing
+- Spectral 16px body, Inter Medium 18px section headings
+- 12px paragraph spacing, 24px image spacing
+
+**Props:**
+- Accepts markdown content (slot)
 
 ---
 

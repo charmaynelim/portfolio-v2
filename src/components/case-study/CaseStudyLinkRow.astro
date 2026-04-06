@@ -1,0 +1,50 @@
+---
+interface Props {
+  label: string;
+  href: string;
+}
+
+const { label, href } = Astro.props;
+---
+
+<a href={href} class="cs-link-row" target="_blank" rel="noopener noreferrer">
+  <span class="cs-link-text">{label}</span>
+  <img src="/icons/arrow_outward.svg" alt="" width="16" height="16" class="cs-link-arrow" />
+</a>
+
+<style>
+  .cs-link-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--cs-link-row-padding-vertical) 0;
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .cs-link-row + .cs-link-row {
+    border-top: none;
+  }
+
+  .cs-link-text {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    transition: color 0.15s ease;
+  }
+
+  .cs-link-arrow {
+    display: block;
+    transition: opacity 0.15s ease;
+  }
+
+  @media (hover: hover) {
+    .cs-link-row:hover .cs-link-text,
+    .cs-link-row:hover .cs-link-arrow {
+      opacity: 0.5;
+    }
+  }
+</style>

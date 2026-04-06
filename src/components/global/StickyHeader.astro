@@ -1,0 +1,55 @@
+---
+interface Props {
+  backHref: string;
+}
+
+const { backHref } = Astro.props;
+---
+
+<header class="sticky-header">
+  <a href={backHref} class="sticky-header-back interactive" aria-label="Go back">
+    <img src="/icons/west.svg" alt="" width="20" height="20" />
+  </a>
+  <a href="/" class="sticky-header-name text-site-name">charmayne</a>
+</header>
+
+<style>
+  .sticky-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--sticky-header-height);
+    background: var(--color-bg-primary);
+    padding: 0 var(--padding-container-horizontal);
+    z-index: 100;
+  }
+
+  @media (min-width: 768px) {
+    .sticky-header {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sticky-header {
+      padding: 0 var(--padding-container-mobile-horizontal);
+    }
+  }
+
+  .sticky-header-back {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .sticky-header-back img {
+    width: var(--icon-back-arrow-size);
+    height: var(--icon-back-arrow-size);
+    display: block;
+  }
+
+  .sticky-header-name {
+    display: inline-block;
+    text-decoration: none;
+  }
+</style>

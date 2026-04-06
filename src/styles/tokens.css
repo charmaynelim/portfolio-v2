@@ -1,6 +1,14 @@
 /* Font Face Declarations */
 @font-face {
   font-family: 'Inter';
+  src: url('/fonts/inter/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
   src: url('/fonts/inter/inter-500.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
@@ -18,6 +26,15 @@
 @font-face {
   font-family: 'Spectral';
   src: url('/fonts/spectral/spectral-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Handwritten';
+  src: url('/fonts/handwritten/Handstand.woff2') format('woff2'),
+       url('/fonts/handwritten/Handstand.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -43,6 +60,8 @@
   --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Courier New', monospace;
   --font-serif: 'Spectral', Georgia, serif;
+
+  --font-handwritten: 'Handwritten', cursive;
 
   --font-weight-medium: 500;
   --font-weight-regular: 400;
@@ -122,6 +141,9 @@
   /* Icons */
   --icon-back-arrow-size: 20px;
 
+  /* Sticky Header */
+  --sticky-header-height: 60px;
+
   /* Dividers */
   --divider-height: 1px;
 
@@ -147,6 +169,23 @@
 
   /* More Page — Filter */
   --more-filter-gap: 12px;
+
+  /* Case Study — Layout */
+  --cs-left-column-width: 200px;
+  --cs-column-gap: 80px;
+  --cs-content-max-width: 700px;
+
+  /* Case Study — Padding */
+  --cs-padding-horizontal: 44px;
+  --cs-padding-vertical: 44px;
+  --cs-padding-mobile-horizontal: 20px;
+  --cs-padding-mobile-top: 40px;
+
+  /* Case Study — Metadata */
+  --cs-meta-gap: 24px;
+
+  /* Case Study — Inline Links */
+  --cs-link-row-padding-vertical: 16px;
 }
 
 /* Mobile Overrides */

@@ -1,8 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ContentContainer from '../components/global/ContentContainer.astro';
-import SiteHeader from '../components/global/SiteHeader.astro';
-import BackArrow from '../components/global/BackArrow.astro';
+import StickyHeader from '../components/global/StickyHeader.astro';
 
 interface Props {
   title?: string;
@@ -13,9 +12,8 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
+  <StickyHeader backHref="/" />
   <ContentContainer>
-    <SiteHeader />
-    <BackArrow href="/" />
     <slot />
   </ContentContainer>
 </BaseLayout>

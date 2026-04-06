@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<aside class="case-study-left">
+  <h1 class="cs-title">{title}</h1>
+  {subtitle && <p class="cs-subtitle">{subtitle}</p>}
+</aside>
+
+<style>
+  .case-study-left {
+    width: var(--cs-left-column-width);
+  }
+
+  @media (min-width: 768px) {
+    .case-study-left {
+      position: fixed;
+      top: calc(var(--sticky-header-height) + var(--cs-padding-vertical));
+      left: var(--cs-padding-horizontal);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .case-study-left {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+  }
+
+  .cs-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .cs-subtitle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-tertiary);
+    line-height: 1.25;
+    margin: 4px 0 0;
+  }
+</style>

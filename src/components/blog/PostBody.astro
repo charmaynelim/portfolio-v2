@@ -9,6 +9,8 @@
 <style>
   .post-body {
     max-width: 600px;
+    position: relative;
+    overflow: visible;
   }
 
   /* Paragraph spacing */
@@ -47,11 +49,20 @@
   }
 
   /* Image spacing */
-  .post-body :global(img) {
+  .post-body :global(img:not(.annotation-arrow)) {
     margin-top: var(--spacing-image);
     margin-bottom: var(--spacing-image);
     width: 100%;
     height: auto;
+  }
+
+  /* Video spacing (mp4 in markdown) */
+  .post-body :global(video) {
+    margin-top: var(--spacing-image);
+    margin-bottom: var(--spacing-image);
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   /* Links in body content */
@@ -79,5 +90,75 @@
 
   .post-body :global(li:last-child) {
     margin-bottom: 0;
+  }
+
+  /* Annotations — desktop: absolute in margins */
+  @media (min-width: 768px) {
+    .post-body :global(.annotation) {
+      position: absolute;
+      max-width: 200px;
+    }
+
+    .post-body :global(.annotation[data-side="right"]) {
+      left: calc(100% + 52px);
+    }
+
+    .post-body :global(.annotation[data-side="left"]) {
+      right: calc(100% + 52px);
+    }
+
+    .post-body :global(.annotation[data-side="right"] .annotation-text) {
+      margin-left: 40px;
+    }
+
+    .post-body :global(.annotation[data-side="left"] .annotation-text) {
+      margin-left: -20px;
+    }
+
+    .post-body :global(.annotation[data-side="right"] .annotation-arrow) {
+      margin-left: -20px;
+    }
+
+    .post-body :global(.annotation[data-side="left"] .annotation-arrow) {
+      margin-left: 10px;
+      transform: scaleY(-1) translate(var(--arrow-x, 0px), var(--arrow-y, 0px)) rotate(var(--arrow-rotate, 0deg));
+    }
+  }
+
+  /* Annotations — mobile: inline in flow */
+  @media (max-width: 767px) {
+    .post-body :global(.annotation) {
+      display: none;
+    }
+  }
+
+  .post-body :global(.annotation-text) {
+    font-family: var(--font-handwritten);
+    font-size: 18px;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    display: block;
+    transform: translate(var(--text-x, 0px), var(--text-y, 0px));
+  }
+
+  @media (max-width: 767px) {
+    .post-body :global(.annotation-text) {
+      font-size: 16px;
+      transform: none;
+    }
+  }
+
+  .post-body :global(.annotation-arrow) {
+    display: block;
+    max-width: 80px;
+    height: auto;
+    margin-top: 18px;
+    transform: translate(var(--arrow-x, 0px), var(--arrow-y, 0px)) rotate(var(--arrow-rotate, 0deg));
+  }
+
+  @media (max-width: 767px) {
+    .post-body :global(.annotation-arrow) {
+      display: none;
+    }
   }
 </style>
