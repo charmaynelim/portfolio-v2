@@ -104,7 +104,7 @@
     "externalUrl": "https://luma.com/v2c8si18",
     "title": null,
     "body": null,
-    "hoverHeader": "first prompt 2026",
-    "hoverNote": "APAC's flagship AI conference"
+    "hoverHeader": "first prompt {2026}",
+    "hoverNote": "APAC's flagship AI conference, 2026"
   }
 ]
