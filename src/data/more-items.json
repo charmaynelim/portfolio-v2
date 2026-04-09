@@ -94,5 +94,17 @@
     "body": null,
     "hoverHeader": "getting PT certified",
     "hoverNote": "follow my progress :)"
+  },
+    {
+    "id": "009",
+    "type": "image",
+    "src": "/images/more/firstprompt.jpeg",
+    "alt": "first prompt",
+    "category": ["community"],
+    "externalUrl": "https://luma.com/v2c8si18",
+    "title": null,
+    "body": null,
+    "hoverHeader": "first prompt 2026",
+    "hoverNote": "APAC's flagship AI conference"
   }
 ]
