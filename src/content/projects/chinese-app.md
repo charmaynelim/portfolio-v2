@@ -15,7 +15,7 @@ Sidi is a Chinese reading tool for serious Chinese learners looking to build rea
 
 [Why I'm building this](https://charmaynelim.com/log/sidi)
 
-<!-- This content is hidden
+
 
 
 ## <b>16 Feb 2026</b>
@@ -76,4 +76,3 @@ Each level needs a different design treatment. L1 shows word-level breakdown, L2
 <br><br><br>
 
 
--->

@@ -29,9 +29,11 @@ I joined as the founding designer to define the product experience from zero to 
 
 If there’s one story that captures what it was like to be the sole designer in HeyMax’s early days, it’s how we launched Max Miles — HeyMax’s flagship travel rewards currency, that lets users earn miles on everyday spend.
 
+<!--
 :::annotation{side="right" arrow="curve-right"}
 Tap to view
 :::
+-->
 
 ![Launch mvp 1](./images/launch-mvp-1.png)
 
@@ -40,8 +42,22 @@ I designed the MVP in a few days. We launched in 2 weeks, close to midnight, jus
 
 ![Launch mvp 2](./images/launch-mvp-2.png)
 
+## Card Maximiser
+
+HeyMax's Card Maximiser is a Visa-linked tracker that automatically monitors spending, rewards, bonus caps, and minimum spends across all your linked credit cards in one place.
+
+Singapore miles-chasers [typically juggle 3–5+ cards, each with their own caps, exclusions, and reset cycles](https://milelion.com/2025/09/18/heymax-card-maximiser-auto-tracking-of-credit-card-points-and-bonus-caps/). We took the mental math and spreadsheet-keeping out of miles optimisation so users stop leaving rewards on the table.
+
 ![card maximiser](./images/card-maximiser.png)
 
+## Fly Anywhere
+
+Every miles program is closed-loop. The airline controls the seat inventory, so your miles are only worth whatever they decide to release. The currency and the inventory are coupled, and the airline has every incentive to keep redemption painful.
+
+FlyAnywhere decouples them. [What does this mean?](https://milelion.com/2025/06/20/heymax-flyanywhere-guide-redeem-max-miles-for-any-seat-any-airline-anywhere/) It means you can book *any* flight with your miles! No blackout dates, no award space hunting. Book any flight, any airline, any channel, pay in cash, upload the receipt; and HeyMax reimburses you at 1.8¢ per Max Mile. 
+
 ![flyanywhere](./images/flyanywhere.png)
+
+## Branding, Community & more
 
 ![product illustrations](./images/illustrations.png)
