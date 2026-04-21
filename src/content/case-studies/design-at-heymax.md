@@ -29,11 +29,11 @@ I joined as the founding designer to define the product experience from zero to 
 
 If there’s one story that captures what it was like to be the sole designer in HeyMax’s early days, it’s how we launched Max Miles — HeyMax’s flagship travel rewards currency, that lets users earn miles on everyday spend.
 
-<!--
+
 :::annotation{side="right" arrow="curve-right"}
 Tap to view
 :::
--->
+
 
 ![Launch mvp 1](./images/launch-mvp-1.png)
 
