@@ -1,5 +1,17 @@
 [
   {
+    "id": "000",
+    "type": "image",
+    "src": "/images/more/ns.jpg",
+    "alt": "Zo Computer event",
+    "category": ["digital art", "code"],
+    "externalUrl": "https://luma.com/x5ckmvgn",
+    "title": null,
+    "body": null,
+    "hoverHeader": "Kill Your SaaS: Build Jam",
+    "hoverNote": "with Zo Computer, 2026"
+  },
+  {
     "id": "001",
     "type": "video",
     "src": "/images/more/thefigtree.mp4",
